@@ -12,25 +12,25 @@ import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
 
 export const mainListItems = (
     <div>
-        <ListItem button>
+        <ListItem button component="a" href="/">
             <ListItemIcon>
                 <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="Início" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component="a" href="/limp-insp">
             <ListItemIcon>
                 <BuildIcon />
             </ListItemIcon>
             <ListItemText primary="Limpeza e Inspeção" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component="a" href="/lubrificacao">
             <ListItemIcon>
                 <PermDataSettingIcon />
             </ListItemIcon>
             <ListItemText primary="Lubrificação" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component="a" href="/5w">
             <ListItemIcon>
                 <Filter5Icon />
             </ListItemIcon>

@@ -19,6 +19,10 @@ const LimpezaInspecao = () => {
     const [selectedEquipamentoId, setSelectedEquipamentoId] = useState<string>('');
     const [selectedEquipamento, setSelectedEquipamento] = useState<Equipamento | undefined>({} as Equipamento);
 
+    const sendReportToServer = () => {
+        // send post to server
+    };
+
     return (
         <Container className={classes.container}>
             <Container className={classes.selectorContainer}>
@@ -42,6 +46,7 @@ const LimpezaInspecao = () => {
                 className={clsx(classes.selector, selectedEquipamentoId === '' && classes.hide)}
                 selectedEquipamento={selectedEquipamento}
                 setSelectedEquipamento={setSelectedEquipamento}
+                sendReportToServer={sendReportToServer}
             />
         </Container>
     );

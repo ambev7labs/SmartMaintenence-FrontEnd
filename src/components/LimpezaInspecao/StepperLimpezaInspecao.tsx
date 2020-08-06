@@ -7,7 +7,6 @@ import {
     Button,
     Stepper,
     Paper,
-    StepContent,
     AccordionSummary,
     Accordion,
     AccordionDetails,
@@ -72,6 +71,7 @@ interface PropsStepperLimpezaInspecao {
     selectedEquipamento: Equipamento | undefined;
     setSelectedEquipamento: React.Dispatch<React.SetStateAction<Equipamento | undefined>>;
     className: string;
+    sendReportToServer: () => void;
 }
 type AllProps = PropsStepperLimpezaInspecao;
 
@@ -81,8 +81,9 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
     const steps = getSteps(props.selectedEquipamento?.procedures as []);
 
     const handleNext = () => {
-        if (activeStep !== steps.length) {
+        if (activeStep >= steps.length - 1) {
             // enviar dados pro servidor
+            props.sendReportToServer();
         } else {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
@@ -92,6 +93,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
+    // inner component
     const ProceduresContent = (
         step: number,
         procedures: Procedimento[],

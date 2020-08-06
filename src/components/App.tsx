@@ -5,16 +5,22 @@ import Dashboard from './Dashboard/Dashboard';
 import stylesDashboard from '../styles/dashboard';
 import AppDrawer from './ui/AppDrawer';
 import DefaultAppBar from './ui/DefaultAppBar';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import LimpezaInspecao from './LimpezaInspecao/LimpezaInspecao';
 import Login from './Login/Login';
-import { initialUser } from '../constants';
 import UserData from '../contexts/UserData';
+import { isNullOrUndefined } from 'util';
+import { useCookies } from 'react-cookie';
+import { User } from '../types';
 
 const App = () => {
     const classes = stylesDashboard();
     const [open, setOpen] = React.useState(false);
-    const [currentUser, setCurrentUser] = React.useState(initialUser);
+    const [cookies, setCookie] = useCookies(['user']);
+
+    const onUserChange = (user: User | undefined) => {
+        setCookie('user', user, { path: '/' });
+    };
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -40,26 +46,30 @@ const App = () => {
 
     return (
         <Router>
-            <Switch>
+            <UserData.Provider value={{ user: cookies.user, setUser: onUserChange }}>
                 <Route path="/login">
-                    <UserData.Provider value={{ user: currentUser, setUser: setCurrentUser }}>
-                        <Login />
-                    </UserData.Provider>
+                    <Login />
                 </Route>
-                <div className={classes.root}>
-                    <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
-                    <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
-                    <main className={classes.content}>
-                        <div className={classes.appBarSpacer} />
-                        <Route path="/limp-insp">
-                            <LimpezaInspecao />
-                        </Route>
-                        <Route path="/">
-                            <Dashboard />
-                        </Route>
-                    </main>
-                </div>
-            </Switch>
+                {isNullOrUndefined(cookies.user) ? (
+                    <Redirect to="/login" />
+                ) : (
+                    <div className={classes.root}>
+                        <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
+                        <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
+                        <main className={classes.content}>
+                            <div className={classes.appBarSpacer} />
+                            <Switch>
+                                <Route path="/limp-insp">
+                                    <LimpezaInspecao />
+                                </Route>
+                                <Route path="/">
+                                    <Dashboard />
+                                </Route>
+                            </Switch>
+                        </main>
+                    </div>
+                )}
+            </UserData.Provider>
         </Router>
     );
 };

@@ -1,8 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useContext } from 'react';
 import { Select, FormControl, MenuItem, FormHelperText } from '@material-ui/core';
 import axios from 'axios';
 import stylesLimpezaInspecao from '../../styles/limpezaInspecao';
 import { Equipamento } from '../../types';
+import UserData from '../../contexts/UserData';
 
 interface PropsEquipamentoSelector {
     grupo: string;
@@ -16,10 +17,11 @@ type AllProps = PropsEquipamentoSelector;
 
 const EquipamentoSelector: FC<AllProps> = (props: AllProps) => {
     const classes = stylesLimpezaInspecao();
+    const userData = useContext(UserData);
 
     useEffect(() => {
         axios
-            .get(`/equip/indexbyequip?field=Packaging%20501&group=${props.grupo}`)
+            .get(`/equip/indexbyequip?field=${userData.user.field}&group=${props.grupo}`)
             .then((response) => {
                 response.data.map((equipamento: Equipamento) => {
                     equipamento.procedures.map((procedure) => (procedure.checked = false));

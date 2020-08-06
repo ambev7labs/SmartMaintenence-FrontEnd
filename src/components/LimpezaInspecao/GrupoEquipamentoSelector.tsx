@@ -1,8 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useContext } from 'react';
 import { Select, FormControl, MenuItem, FormHelperText } from '@material-ui/core';
 import axios from 'axios';
 import { GrupoEquipamento, Equipamento } from '../../types';
 import stylesLimpezaInspecao from '../../styles/limpezaInspecao';
+import UserData from '../../contexts/UserData';
 
 interface PropsEquipamentoSelector {
     grupos: GrupoEquipamento[] | undefined;
@@ -15,10 +16,11 @@ type AllProps = PropsEquipamentoSelector;
 
 const GrupoEquipamentoSelector: FC<AllProps> = (props: AllProps) => {
     const classes = stylesLimpezaInspecao();
+    const userData = useContext(UserData);
 
     useEffect(() => {
         axios
-            .get('/equip/index?field=Packaging%20501')
+            .get(`/equip/index?field=${userData.user.field}`)
             .then((response) => {
                 props.setGrupos(response.data);
             })

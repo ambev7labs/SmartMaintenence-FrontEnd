@@ -5,6 +5,7 @@ import { Drawer, List, IconButton, Divider, Typography } from '@material-ui/core
 import clsx from 'clsx';
 import stylesDashboard from '../../styles/dashboard';
 import ImportantDevicesIcon from '@material-ui/icons/ImportantDevices';
+
 interface PropsAppDrawer {
     open: boolean;
     handleDrawerClose: () => void;
@@ -25,7 +26,9 @@ const AppDrawer: FC<AllProps> = (props: AllProps) => {
         >
             <div className={classes.toolbarIcon}>
                 <ImportantDevicesIcon className={classes.drawerIcon} />
-                <Typography noWrap>Smart Maintenance</Typography>
+                <Typography className={classes.titleDrawer} noWrap>
+                    Smart Maintenance
+                </Typography>
                 <IconButton onClick={props.handleDrawerClose}>
                     <ChevronLeftIcon />
                 </IconButton>

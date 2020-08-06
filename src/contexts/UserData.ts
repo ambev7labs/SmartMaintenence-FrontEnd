@@ -3,7 +3,7 @@ import { User } from '../types';
 
 export interface PropsUserData {
     user: User;
-    setUser: React.Dispatch<React.SetStateAction<User>>;
+    setUser: (user: User | undefined) => void;
 }
 
 const UserData = React.createContext<PropsUserData>({} as PropsUserData);

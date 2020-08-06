@@ -81,6 +81,10 @@ const stylesDashboard = makeStyles((theme) => ({
     drawerIcon: {
         marginRight: '10px',
     },
+    titleDrawer: {
+        fontSize: 13,
+        fontWeight: 'bold',
+    },
 }));
 
 export default stylesDashboard;
