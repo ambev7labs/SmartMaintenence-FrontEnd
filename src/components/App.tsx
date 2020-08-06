@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import '../styles/App.css';
 import Dashboard from './Dashboard/Dashboard';
@@ -6,12 +6,15 @@ import stylesDashboard from '../styles/dashboard';
 import AppDrawer from './ui/AppDrawer';
 import DefaultAppBar from './ui/DefaultAppBar';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
 import LimpezaInspecao from './LimpezaInspecao/LimpezaInspecao';
+import Login from './Login/Login';
+import { initialUser } from '../constants';
+import UserData from '../contexts/UserData';
 
 const App = () => {
-    const [open, setOpen] = React.useState(false);
     const classes = stylesDashboard();
+    const [open, setOpen] = React.useState(false);
+    const [currentUser, setCurrentUser] = React.useState(initialUser);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -37,21 +40,26 @@ const App = () => {
 
     return (
         <Router>
-            <div className={classes.root}>
-                <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
-                <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
-                <main className={classes.content}>
-                    <div className={classes.appBarSpacer} />
-                    <Switch>
+            <Switch>
+                <Route path="/login">
+                    <UserData.Provider value={{ user: currentUser, setUser: setCurrentUser }}>
+                        <Login />
+                    </UserData.Provider>
+                </Route>
+                <div className={classes.root}>
+                    <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
+                    <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
+                    <main className={classes.content}>
+                        <div className={classes.appBarSpacer} />
                         <Route path="/limp-insp">
                             <LimpezaInspecao />
                         </Route>
                         <Route path="/">
                             <Dashboard />
                         </Route>
-                    </Switch>
-                </main>
-            </div>
+                    </main>
+                </div>
+            </Switch>
         </Router>
     );
 };

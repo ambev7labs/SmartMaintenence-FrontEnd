@@ -25,3 +25,9 @@ export interface Procedimento {
     condition: 'PARADA' | 'RODANDO';
     checked: boolean;
 }
+
+export interface User {
+    userId: string | undefined;
+    admin: boolean;
+    field: string | undefined;
+}
