@@ -43,6 +43,14 @@ const stylesLimpezaInspecao = makeStyles((theme) => ({
     uncheckedListItem: {
         backgroundColor: '#f2b195',
     },
+    reportComments: {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(2),
+        width: '100%',
+    },
+    accordion: {
+        marginBottom: theme.spacing(1),
+    },
 }));
 
 export default stylesLimpezaInspecao;

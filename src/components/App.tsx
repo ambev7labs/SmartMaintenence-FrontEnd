@@ -12,6 +12,7 @@ import UserData from '../contexts/UserData';
 import { isNullOrUndefined } from 'util';
 import { useCookies } from 'react-cookie';
 import { User } from '../types';
+import CincoPorques from './CincoPorques/CincoPorques';
 
 const App = () => {
     const classes = stylesDashboard();
@@ -47,28 +48,33 @@ const App = () => {
     return (
         <Router>
             <UserData.Provider value={{ user: cookies.user, setUser: onUserChange }}>
-                <Route path="/login">
-                    <Login />
-                </Route>
-                {isNullOrUndefined(cookies.user) ? (
-                    <Redirect to="/login" />
-                ) : (
-                    <div className={classes.root}>
-                        <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
-                        <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
-                        <main className={classes.content}>
-                            <div className={classes.appBarSpacer} />
-                            <Switch>
-                                <Route path="/limp-insp">
-                                    <LimpezaInspecao />
-                                </Route>
-                                <Route path="/">
-                                    <Dashboard />
-                                </Route>
-                            </Switch>
-                        </main>
-                    </div>
-                )}
+                <Switch>
+                    <Route path="/login">
+                        <Login />
+                    </Route>
+                    {isNullOrUndefined(cookies.user) ? (
+                        <Redirect to="/login" />
+                    ) : (
+                        <div className={classes.root}>
+                            <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
+                            <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
+                            <main className={classes.content}>
+                                <div className={classes.appBarSpacer} />
+                                <Switch>
+                                    <Route path="/limp-insp">
+                                        <LimpezaInspecao />
+                                    </Route>
+                                    <Route path="/5w">
+                                        <CincoPorques />
+                                    </Route>
+                                    <Route path="/">
+                                        <Dashboard />
+                                    </Route>
+                                </Switch>
+                            </main>
+                        </div>
+                    )}
+                </Switch>
             </UserData.Provider>
         </Router>
     );

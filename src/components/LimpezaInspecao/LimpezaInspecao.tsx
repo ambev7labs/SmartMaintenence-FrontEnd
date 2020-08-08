@@ -6,18 +6,22 @@ import GrupoEquipamentoSelector from './GrupoEquipamentoSelector';
 import EquipamentoSelector from './EquipamentoSelector';
 import StepperLimpezaInspecao from './StepperLimpezaInspecao';
 import clsx from 'clsx';
+import Title from '../ui/Title';
 
 const LimpezaInspecao = () => {
     const classes = stylesLimpezaInspecao();
 
-    // State relacionado ao GrupoEquipamentoSelector
     const [grupos, setGrupos] = useState<GrupoEquipamento[] | undefined>(undefined);
     const [selectedGrupo, setSelectedGrupo] = useState<string>('');
 
-    // State relacionado ao EquipamentoSelector
     const [equipamentosDoGrupo, setEquipamentosDoGrupo] = useState<Equipamento[] | undefined>([]);
     const [selectedEquipamentoId, setSelectedEquipamentoId] = useState<string>('');
     const [selectedEquipamento, setSelectedEquipamento] = useState<Equipamento | undefined>({} as Equipamento);
+    const [reportComments, setReportComments] = useState('');
+
+    const handleReportComments = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        setReportComments(event.currentTarget.value);
+    };
 
     const sendReportToServer = () => {
         // send post to server
@@ -26,6 +30,7 @@ const LimpezaInspecao = () => {
     return (
         <Container className={classes.container}>
             <Container className={classes.selectorContainer}>
+                <Title>Limpeza e Inspeção</Title>
                 <GrupoEquipamentoSelector
                     grupos={grupos}
                     setGrupos={setGrupos}
@@ -47,6 +52,8 @@ const LimpezaInspecao = () => {
                 selectedEquipamento={selectedEquipamento}
                 setSelectedEquipamento={setSelectedEquipamento}
                 sendReportToServer={sendReportToServer}
+                handleReportComments={handleReportComments}
+                reportComments={reportComments}
             />
         </Container>
     );

@@ -31,3 +31,37 @@ export interface User {
     admin: boolean;
     field: string | undefined;
 }
+
+export interface Relatorio {
+    period: string;
+    frequency: number;
+    date: Date;
+    userId: string;
+    field: string;
+    machineName: string;
+    report: string;
+    arrayAllPages: Procedimento[]; // procedimentos
+}
+
+export interface Porque {
+    number: string;
+    description: string;
+}
+
+export interface CincoPorquesInfo {
+    use: string;
+    cause: string;
+    comment: string;
+    corrective: string;
+    date: Date;
+    descriptionAnomaly: string;
+    deterioration: string;
+    equip: string;
+    field: string;
+    maintenanceNotes: string;
+    maintenanceOrder: string;
+    shift: string;
+    tag: string;
+    userId: string;
+    whys: Porque[];
+}

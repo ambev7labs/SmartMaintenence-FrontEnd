@@ -5,6 +5,7 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import stylesDashboard from '../../styles/dashboard';
 import Copyright from '../ui/Copyright';
+import Title from '../ui/Title';
 
 const Dashboard = () => {
     const classes = stylesDashboard();
@@ -12,6 +13,7 @@ const Dashboard = () => {
 
     return (
         <Container maxWidth="lg" className={classes.container}>
+            <Title>Bem vindo ao Smart Maintenance</Title>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={8} lg={9}>
                     <Paper className={fixedHeightPaper}>

@@ -15,6 +15,7 @@ import {
     List,
     ListItem,
     ListItemText,
+    TextField,
 } from '@material-ui/core';
 import { Equipamento, Procedimento } from '../../types';
 import stylesLimpezaInspecao from '../../styles/limpezaInspecao';
@@ -72,6 +73,8 @@ interface PropsStepperLimpezaInspecao {
     setSelectedEquipamento: React.Dispatch<React.SetStateAction<Equipamento | undefined>>;
     className: string;
     sendReportToServer: () => void;
+    handleReportComments: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+    reportComments: string;
 }
 type AllProps = PropsStepperLimpezaInspecao;
 
@@ -84,6 +87,8 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
         if (activeStep >= steps.length - 1) {
             // enviar dados pro servidor
             props.sendReportToServer();
+            //history.push('/');
+            setActiveStep(0);
         } else {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
@@ -106,7 +111,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
         return (
             <React.Fragment>
                 {slicedProcedures?.map((procedure) => (
-                    <Container key={`procedimento-${procedure._id}`}>
+                    <Container className={classes.accordion} key={`procedimento-${procedure._id}`}>
                         <Accordion className={procedure.checked ? classes.markedAccordion : undefined}>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                 <Title>{`${procedure.description}`}</Title>
@@ -175,6 +180,16 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                     {activeStep === steps?.length - 1 ? (
                         <Container>
                             <StepperSummary equipamento={props.selectedEquipamento as Equipamento} />
+                            <Title>Feedback da inspeção</Title>
+                            <TextField
+                                className={classes.reportComments}
+                                placeholder="Houve algum problema durante a inspeção/limpeza? Conte-nos"
+                                variant="outlined"
+                                multiline
+                                rows={6}
+                                value={props.reportComments}
+                                onChange={props.handleReportComments}
+                            />
                             <div className={classes.stepperButtonDiv}>
                                 <Button
                                     variant="contained"
