@@ -79,7 +79,7 @@ const EquipamentoSection: FC<AllProps> = (props: AllProps) => {
                         </MenuItem>
                     ))}
                 </Select>
-                <FormHelperText>Turno</FormHelperText>
+                <FormHelperText>Equipamento</FormHelperText>
             </FormControl>
         </Container>
     );
