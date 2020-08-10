@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
-import { AppBar, Badge, Toolbar, Typography, IconButton } from '@material-ui/core';
+import React, { FC, useContext } from 'react';
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import clsx from 'clsx';
 import stylesDashboard from '../../styles/dashboard';
 import logo from '../../img/logo.png';
+import UserData from '../../contexts/UserData';
 
 interface PropsDefaultAppBar {
     open: boolean;
@@ -15,6 +16,11 @@ type AllProps = PropsDefaultAppBar;
 
 const DefaultAppBar: FC<AllProps> = (props: AllProps) => {
     const classes = stylesDashboard();
+    const userData = useContext(UserData);
+
+    const handleLogOut = () => {
+        userData.setUser(undefined);
+    };
 
     return (
         <AppBar position="absolute" className={clsx(classes.appBar, props.open && classes.appBarShift)}>
@@ -31,10 +37,8 @@ const DefaultAppBar: FC<AllProps> = (props: AllProps) => {
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                     <img src={logo} alt={logo} width="80px" height="50%" />
                 </Typography>
-                <IconButton color="inherit">
-                    <Badge badgeContent={14} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
+                <IconButton onClick={handleLogOut} color="inherit">
+                    <ExitToAppIcon />
                 </IconButton>
             </Toolbar>
         </AppBar>

@@ -56,6 +56,7 @@ const CincoPorques = () => {
             .post('/why/create/', dados)
             .then(() => {
                 setErrorMessage(undefined);
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
                 setIsRequestSent(true);
             })
             .catch((e) => {
@@ -107,7 +108,7 @@ const CincoPorques = () => {
                 </Stepper>
                 {activeStep === steps.length && (
                     <Paper square elevation={0} className={classes.resetContainer}>
-                        <Typography>All steps completed - you&apos;re finished</Typography>
+                        <Typography>Finalizado</Typography>
                     </Paper>
                 )}
             </Paper>
