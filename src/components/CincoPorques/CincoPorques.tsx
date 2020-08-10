@@ -62,7 +62,7 @@ const CincoPorques = () => {
             .catch((e) => {
                 console.error(e);
                 setIsRequestSent(true);
-                setErrorMessage(e.data.error.message);
+                setErrorMessage(e?.data.error.message || 'Erro! Pode tentar novamente?');
             });
     };
 

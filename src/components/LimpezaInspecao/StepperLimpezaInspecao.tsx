@@ -114,7 +114,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                     <Container className={classes.accordion} key={`procedimento-${procedure._id}`}>
                         <Accordion className={procedure.checked ? classes.markedAccordion : undefined}>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                <Title>{`${procedure.description}`}</Title>
+                                <Title>{`Item ${procedure.item} -  ${procedure.description}`}</Title>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Container>
@@ -128,9 +128,6 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                                     </Typography>
                                     <Typography className={classes.procedureAttribute}>
                                         {`- Local: ${procedure.location}`}
-                                    </Typography>
-                                    <Typography className={classes.procedureAttribute}>
-                                        {`- Item: ${procedure.item}`}
                                     </Typography>
                                 </Container>
                                 <Checkbox

@@ -52,7 +52,7 @@ const App = () => {
                     <Route path="/login">
                         <Login />
                     </Route>
-                    {isNullOrUndefined(cookies.user.userId) ? (
+                    {isNullOrUndefined(cookies.user?.userId) ? (
                         <Redirect to="/login" />
                     ) : (
                         <div className={classes.root}>

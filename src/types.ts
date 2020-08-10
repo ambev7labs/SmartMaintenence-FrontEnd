@@ -65,3 +65,14 @@ export interface CincoPorquesInfo {
     userId: string;
     whys: Porque[];
 }
+
+export interface LimpezaInspecaoInfo {
+    period: string;
+    frequency: number;
+    arrayAllPages: Procedimento[][];
+    date: Date;
+    userId: string;
+    field: string;
+    machineName: string;
+    report: string;
+}

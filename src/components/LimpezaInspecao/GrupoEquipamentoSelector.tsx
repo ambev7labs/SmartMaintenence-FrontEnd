@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useContext } from 'react';
 import { Select, FormControl, MenuItem, FormHelperText } from '@material-ui/core';
 import axios from 'axios';
-import { GrupoEquipamento, Equipamento } from '../../types';
+import { GrupoEquipamento } from '../../types';
 import stylesLimpezaInspecao from '../../styles/limpezaInspecao';
 import UserData from '../../contexts/UserData';
 
@@ -12,6 +12,7 @@ interface PropsEquipamentoSelector {
     setSelectedEquipamentoId: React.Dispatch<React.SetStateAction<string>>;
     selectedGrupo: string;
 }
+
 type AllProps = PropsEquipamentoSelector;
 
 const GrupoEquipamentoSelector: FC<AllProps> = (props: AllProps) => {
