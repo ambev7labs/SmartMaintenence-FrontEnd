@@ -23,6 +23,7 @@ import { isNullOrUndefined } from 'util';
 import clsx from 'clsx';
 import Title from '../ui/Title';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { useHistory } from 'react-router-dom';
 
 // Cada passo terá 5 procedimentos
 const numberOfProceduresPerStep = 5;
@@ -82,12 +83,15 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
     const classes = stylesLimpezaInspecao();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps(props.selectedEquipamento?.procedures as []);
+    const history = useHistory();
 
     const handleNext = () => {
         if (activeStep >= steps.length - 1) {
             // enviar dados pro servidor
             props.sendReportToServer();
-            //history.push('/');
+            setTimeout(() => {
+                history.push('/');
+            }, 1500);
             setActiveStep(0);
         } else {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -173,20 +177,22 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                         )}
                     </div>
                 ))}
+                <Container>
+                    <Title>Feedback da inspeção</Title>
+                    <TextField
+                        className={classes.reportComments}
+                        placeholder="Houve algum problema durante a inspeção/limpeza? Conte-nos"
+                        variant="outlined"
+                        multiline
+                        rows={6}
+                        value={props.reportComments}
+                        onChange={props.handleReportComments}
+                    />
+                </Container>
                 <div>
                     {activeStep === steps?.length - 1 ? (
                         <Container>
                             <StepperSummary equipamento={props.selectedEquipamento as Equipamento} />
-                            <Title>Feedback da inspeção</Title>
-                            <TextField
-                                className={classes.reportComments}
-                                placeholder="Houve algum problema durante a inspeção/limpeza? Conte-nos"
-                                variant="outlined"
-                                multiline
-                                rows={6}
-                                value={props.reportComments}
-                                onChange={props.handleReportComments}
-                            />
                             <div className={classes.stepperButtonDiv}>
                                 <Button
                                     variant="contained"
