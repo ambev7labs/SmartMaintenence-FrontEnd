@@ -35,7 +35,7 @@ const App = () => {
     axios.defaults.headers = {
         'Content-Type': 'application/json',
     };
-    axios.defaults.baseURL = 'http://3.17.151.221:3333';
+    axios.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/http://3.17.151.221:3333';
     axios.interceptors.response.use(
         (response) => {
             return response;
@@ -54,8 +54,7 @@ const App = () => {
                         <Login />
                     </Route>
                     {isNullOrUndefined(cookies.user?.userId) ? (
-                        //<Redirect to="/login" />
-                        console.log("TESTE")
+                        <Redirect to="/login" />
                     ) : (
                         <div className={classes.root}>
                             <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
