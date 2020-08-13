@@ -9,6 +9,7 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import BuildIcon from '@material-ui/icons/Build';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
+import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import { Link } from 'react-router-dom';
 
 export const mainListItems = (
@@ -40,9 +41,15 @@ export const mainListItems = (
     </div>
 );
 
-export const secondaryListItems = (
+export const adminListItems = (
     <div>
         <ListSubheader inset>Administrar</ListSubheader>
+        <ListItem button component={Link} to="/checks">
+            <ListItemIcon>
+                <PlaylistAddCheckIcon />
+            </ListItemIcon>
+            <ListItemText primary="Cadastro de Checks" />
+        </ListItem>
         <ListItem button>
             <ListItemIcon>
                 <BarChartIcon />
@@ -54,12 +61,6 @@ export const secondaryListItems = (
                 <AssignmentIcon />
             </ListItemIcon>
             <ListItemText primary="Adm. Usuários" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="Cadastro de Checks" />
         </ListItem>
     </div>
 );

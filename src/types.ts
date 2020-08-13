@@ -4,13 +4,23 @@ export interface GrupoEquipamento {
 }
 
 export interface Equipamento {
-    date: Date;
+    date: string;
     _id: string;
     name: string;
     procedures: Procedimento[];
     field: string;
     typeEquip: string;
     __v: number;
+    frequency: number;
+    period: string;
+}
+
+export interface Check {
+    date: string;
+    name: string;
+    procedures: Procedimento[];
+    field: string;
+    typeEquip: string;
     frequency: number;
     period: string;
 }

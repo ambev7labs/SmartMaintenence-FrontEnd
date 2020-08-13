@@ -13,6 +13,7 @@ import { isNullOrUndefined } from 'util';
 import { useCookies } from 'react-cookie';
 import { User } from '../types';
 import CincoPorques from './CincoPorques/CincoPorques';
+import TabelaChecks from './TabelaChecks/TabelaChecks';
 
 const App = () => {
     const classes = stylesDashboard();
@@ -34,7 +35,7 @@ const App = () => {
     axios.defaults.headers = {
         'Content-Type': 'application/json',
     };
-    axios.defaults.baseURL = 'http://3.21.162.147:3333/';
+    axios.defaults.baseURL = 'http://3.17.151.221:3333';
     axios.interceptors.response.use(
         (response) => {
             return response;
@@ -66,6 +67,9 @@ const App = () => {
                                     </Route>
                                     <Route path="/5w">
                                         <CincoPorques />
+                                    </Route>
+                                    <Route path="/checks">
+                                        <TabelaChecks />
                                     </Route>
                                     <Route path="/">
                                         <Dashboard />

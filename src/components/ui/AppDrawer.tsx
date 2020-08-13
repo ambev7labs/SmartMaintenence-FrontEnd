@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems } from './DrawerItems';
+import { mainListItems, adminListItems } from './DrawerItems';
 import { Drawer, List, IconButton, Divider, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import stylesDashboard from '../../styles/dashboard';
 import ImportantDevicesIcon from '@material-ui/icons/ImportantDevices';
+import UserData from '../../contexts/UserData';
 
 interface PropsAppDrawer {
     open: boolean;
@@ -14,6 +15,7 @@ interface PropsAppDrawer {
 type AllProps = PropsAppDrawer;
 
 const AppDrawer: FC<AllProps> = (props: AllProps) => {
+    const userData = useContext(UserData);
     const classes = stylesDashboard();
 
     return (
@@ -36,7 +38,7 @@ const AppDrawer: FC<AllProps> = (props: AllProps) => {
             <Divider />
             <List>{mainListItems}</List>
             <Divider />
-            <List>{secondaryListItems}</List>
+            {userData.user.admin ? <List>{adminListItems}</List> : undefined}
         </Drawer>
     );
 };
