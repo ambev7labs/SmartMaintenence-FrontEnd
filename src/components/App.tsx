@@ -14,10 +14,11 @@ import { useCookies } from 'react-cookie';
 import { User } from '../types';
 import CincoPorques from './CincoPorques/CincoPorques';
 import TabelaChecks from './TabelaChecks/TabelaChecks';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const App = () => {
     const classes = stylesDashboard();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const [cookies, setCookie] = useCookies(['user']);
 
     const onUserChange = (user: User | undefined) => {
@@ -57,6 +58,7 @@ const App = () => {
                         <Redirect to="/login" />
                     ) : (
                         <div className={classes.root}>
+                            <CssBaseline />
                             <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
                             <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
                             <main className={classes.content}>
