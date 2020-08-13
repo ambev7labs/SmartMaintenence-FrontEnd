@@ -20,7 +20,7 @@ const AppDrawer: FC<AllProps> = (props: AllProps) => {
 
     return (
         <Drawer
-            variant="permanent"
+            variant="persistent"
             classes={{
                 paper: clsx(classes.drawerPaper, !props.open && classes.drawerPaperClose),
             }}
