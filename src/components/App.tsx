@@ -57,8 +57,8 @@ const App = () => {
                         <Redirect to="/login" />
                     ) : (
                         <div className={classes.root}>
-                            <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
                             <AppDrawer open={open} handleDrawerClose={handleDrawerClose} />
+                            <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
                             <main className={classes.content}>
                                 <div className={classes.appBarSpacer} />
                                 <Switch>
