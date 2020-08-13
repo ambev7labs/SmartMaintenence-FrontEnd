@@ -21,7 +21,7 @@ const EquipamentoSelector: FC<AllProps> = (props: AllProps) => {
 
     useEffect(() => {
         axios
-            .get(`/equip/indexbyequip?field=${userData.user.field}&group=${props.grupo}`)
+            .get(`/equip/indexbyequip?field=${userData.user?.field}&group=${props.grupo}`)
             .then((response) => {
                 response.data.map((equipamento: Equipamento) => {
                     equipamento.procedures.map((procedure) => (procedure.checked = false));
@@ -31,7 +31,7 @@ const EquipamentoSelector: FC<AllProps> = (props: AllProps) => {
             .catch((e) => {
                 console.error('Não foi possível listar os equipamentos', e);
             });
-    }, [props.grupo]);
+    }, [props.grupo, userData.user.field]);
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         props.setSelectedEquipamentoId(event.target.value as string);
