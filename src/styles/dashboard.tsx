@@ -5,9 +5,7 @@ const stylesDashboard = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-    toolbar: {
-        paddingRight: 24, // keep right padding when drawer closed
-    },
+    toolbar: theme.mixins.toolbar,
     toolbarIcon: {
         display: 'flex',
         alignItems: 'center',
