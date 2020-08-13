@@ -17,7 +17,7 @@ import TabelaChecks from './TabelaChecks/TabelaChecks';
 
 const App = () => {
     const classes = stylesDashboard();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     const [cookies, setCookie] = useCookies(['user']);
 
     const onUserChange = (user: User | undefined) => {
