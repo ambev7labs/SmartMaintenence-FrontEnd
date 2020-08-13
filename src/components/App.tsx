@@ -54,7 +54,8 @@ const App = () => {
                         <Login />
                     </Route>
                     {isNullOrUndefined(cookies.user?.userId) ? (
-                        <Redirect to="/login" />
+                        //<Redirect to="/login" />
+                        console.log("TESTE")
                     ) : (
                         <div className={classes.root}>
                             <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
