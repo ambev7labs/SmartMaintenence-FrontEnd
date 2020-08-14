@@ -17,6 +17,7 @@ const getSteps = () => {
 };
 
 const dadosIniciais: CincoPorquesInfo = {
+    _id: '',
     use: '',
     comment: '',
     corrective: '',

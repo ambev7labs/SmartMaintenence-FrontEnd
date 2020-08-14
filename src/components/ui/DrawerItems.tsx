@@ -6,7 +6,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import Filter5Icon from '@material-ui/icons/Filter5';
 import BuildIcon from '@material-ui/icons/Build';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import PeopleIcon from '@material-ui/icons/People';
 import PermDataSettingIcon from '@material-ui/icons/PermDataSetting';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
 import TocIcon from '@material-ui/icons/Toc';
@@ -50,23 +50,23 @@ export const adminListItems = (
             </ListItemIcon>
             <ListItemText primary="Cadastro de Checks" />
         </ListItem>
-        <ListItem button component={Link} to="/operarios">
-            <ListItemIcon>
-                <PlaylistAddCheckIcon />
-            </ListItemIcon>
-            <ListItemText primary="Cadastro de Operarios" />
-        </ListItem>
         <ListItem button component={Link} to="/filtro-limp-insp">
             <ListItemIcon>
                 <TocIcon />
             </ListItemIcon>
             <ListItemText primary="Limpeza e Inspeção" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/filtro-5w">
             <ListItemIcon>
-                <AssignmentIcon />
+                <TocIcon />
             </ListItemIcon>
-            <ListItemText primary="Adm. Usuários" />
+            <ListItemText primary="5 Porquês" />
+        </ListItem>
+        <ListItem button component={Link} to="/operarios">
+            <ListItemIcon>
+                <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Cadastro de Operarios" />
         </ListItem>
     </div>
 );

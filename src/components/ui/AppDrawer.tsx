@@ -38,7 +38,7 @@ const AppDrawer: FC<AllProps> = (props: AllProps) => {
             <Divider />
             <List>{mainListItems}</List>
             <Divider />
-            {userData.user.admin ? <List>{adminListItems}</List> : undefined}
+            {(userData.user.admin || userData.user.field === 'Engenharia') && <List>{adminListItems}</List>}
         </Drawer>
     );
 };

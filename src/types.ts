@@ -21,7 +21,6 @@ export interface Operarios {
     userId: string;
     field: string;
     admin: boolean;
-
 }
 
 export interface Check {
@@ -69,6 +68,7 @@ export interface Porque {
 }
 
 export interface CincoPorquesInfo {
+    _id: string;
     use: string;
     cause: string;
     comment: string;

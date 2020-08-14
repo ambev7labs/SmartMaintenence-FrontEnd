@@ -17,7 +17,7 @@ import TabelaChecks from './TabelaChecks/TabelaChecks';
 import TabelaOperarios from './TabelaOperarios/TabelaOperarios';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FiltroLimpezaInspecao from './FiltroLimpezaInspecao/FiltroLimpezaInspecao';
-
+import FiltroCincoPorques from './FiltroCincoPorques/FiltroCincoPorques';
 
 const App = () => {
     const classes = stylesDashboard();
@@ -39,7 +39,7 @@ const App = () => {
     axios.defaults.headers = {
         'Content-Type': 'application/json',
     };
-    axios.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/http://3.17.151.221:3333';
+    axios.defaults.baseURL = 'http://3.17.151.221:3333';
     axios.interceptors.response.use(
         (response) => {
             return response;
@@ -76,12 +76,21 @@ const App = () => {
                                     <Route path="/checks">
                                         <TabelaChecks />
                                     </Route>
-                                    <Route path="/operarios">
-                                        <TabelaOperarios />
-                                    </Route>
-                                    <Route path="/filtro-limp-insp">
-                                        <FiltroLimpezaInspecao />
-                                    </Route>
+                                    {(cookies.user?.admin || cookies.user?.field === 'Engenharia') && (
+                                        <Route path="/operarios">
+                                            <TabelaOperarios />
+                                        </Route>
+                                    )}
+                                    {(cookies.user?.admin || cookies.user?.field === 'Engenharia') && (
+                                        <Route path="/filtro-limp-insp">
+                                            <FiltroLimpezaInspecao />
+                                        </Route>
+                                    )}
+                                    {(cookies.user?.admin || cookies.user?.field === 'Engenharia') && (
+                                        <Route path="/filtro-5w">
+                                            <FiltroCincoPorques />
+                                        </Route>
+                                    )}
                                     <Route path="/">
                                         <Dashboard />
                                     </Route>
