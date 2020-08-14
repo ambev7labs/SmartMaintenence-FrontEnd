@@ -102,10 +102,13 @@ const FiltroCincoPorques = () => {
 
             <Button
                 onClick={() => {
+                    // Este passo só precisar ser feito pq estamos usando o proxy https cors-anywhere
+                    // sem ele basta usar o axios.defaults.baseURL
+                    const url = axios.defaults.baseURL?.replace('https://cors-anywhere.herokuapp.com/', '');
                     window.open(
-                        `${axios.defaults.baseURL}/backup?initialDate=${state.initialDate}&finalDate=${
-                            state.finalDate
-                        }&userId=&field=${state.chosenField === '' ? userData.user.field : state.chosenField}&type=5w`
+                        `${url}/backup?initialDate=${state.initialDate}&finalDate=${state.finalDate}&userId=&field=${
+                            state.chosenField === '' ? userData.user.field : state.chosenField
+                        }&type=5w`
                     );
                 }}
                 variant="outlined"

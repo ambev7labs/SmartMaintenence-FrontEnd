@@ -79,9 +79,10 @@ const TabelaChecks = () => {
                         icon: () => <ViewListIcon />,
                         tooltip: '.csv',
                         onClick: () => {
-                            window.open(
-                                `${axios.defaults.baseURL}/backup?name=${rowData.name}&type=checks&field=${userData.user.field}`
-                            );
+                            // Este passo só precisar ser feito pq estamos usando o proxy https cors-anywhere
+                            // sem ele basta usar o axios.defaults.baseURL
+                            const url = axios.defaults.baseURL?.replace('https://cors-anywhere.herokuapp.com/', '');
+                            window.open(`${url}/backup?name=${rowData.name}&type=checks&field=${userData.user.field}`);
                         },
                     }),
                     (rowData) => ({
