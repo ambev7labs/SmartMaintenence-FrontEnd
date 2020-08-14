@@ -124,8 +124,8 @@ const DialogFiltroLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                     {props.cincoPorquesInfo.whys.map((porque) => (
                         <ListItemText
                             key={`5w-fitro-whys-list-${porque.number}`}
-                            primary={porque.description}
-                            secondary={porque.number}
+                            primary={`Porque ${porque.number}`}
+                            secondary={porque.description}
                         />
                     ))}
                 </List>

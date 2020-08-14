@@ -53,8 +53,10 @@ const CincoPorques = () => {
     };
 
     const handleSendRequest = () => {
+        const dadosSemId: any = { ...dados };
+        dadosSemId._id = undefined;
         axios
-            .post('/why/create/', dados)
+            .post('/why/create/', dadosSemId)
             .then(() => {
                 setErrorMessage(undefined);
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
