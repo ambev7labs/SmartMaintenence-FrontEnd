@@ -56,7 +56,6 @@ export const adminListItems = (
             </ListItemIcon>
             <ListItemText primary="Cadastro de Operarios" />
         </ListItem>
-        <ListItem button>
         <ListItem button component={Link} to="/filtro-limp-insp">
             <ListItemIcon>
                 <TocIcon />
