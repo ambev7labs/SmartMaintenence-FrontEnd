@@ -78,6 +78,7 @@ const App = () => {
                                     </Route>
                                     <Route path="/operarios">
                                         <TabelaOperarios />
+                                    </Route>
                                     <Route path="/filtro-limp-insp">
                                         <FiltroLimpezaInspecao />
                                     </Route>
