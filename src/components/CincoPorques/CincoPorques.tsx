@@ -13,7 +13,7 @@ import Alert from '@material-ui/lab/Alert';
 import { isNullOrUndefined } from 'util';
 
 const getSteps = () => {
-    return ['Equipamento', 'Ações Imediatas', '5 Porquês', 'Conclusões'];
+    return ['Equipamento', 'Ações Corretivas', '5 Porquês', 'Ações Preventivas'];
 };
 
 const dadosIniciais: CincoPorquesInfo = {
