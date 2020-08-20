@@ -18,6 +18,8 @@ import TabelaOperarios from './TabelaOperarios/TabelaOperarios';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FiltroLimpezaInspecao from './FiltroLimpezaInspecao/FiltroLimpezaInspecao';
 import FiltroCincoPorques from './FiltroCincoPorques/FiltroCincoPorques';
+import Cadastrar from './Cadastrar/Cadastrar';
+import UserProfileDetails from './UserProfileDetails/UserProfileDetails';
 
 const App = () => {
     const classes = stylesDashboard();
@@ -57,6 +59,9 @@ const App = () => {
                     <Route path="/login">
                         <Login />
                     </Route>
+                    <Route path="/cadastrar">
+                        <Cadastrar />
+                    </Route>
                     {isNullOrUndefined(cookies.user?.userId) ? (
                         <Redirect to="/login" />
                     ) : (
@@ -75,6 +80,9 @@ const App = () => {
                                     </Route>
                                     <Route path="/checks">
                                         <TabelaChecks />
+                                    </Route>
+                                    <Route path="/perfil">
+                                        <UserProfileDetails />
                                     </Route>
                                     {(cookies.user?.admin || cookies.user?.field === 'Engenharia') && (
                                         <Route path="/operarios">
