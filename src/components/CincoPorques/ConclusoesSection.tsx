@@ -61,16 +61,6 @@ const ConclusoesSection: FC<AllProps> = (props: AllProps) => {
                 rows={5}
                 onChange={handleCommentChange}
             />
-            <TextField
-                value={props.dados.maintenanceNotes || ''}
-                className={classes.item}
-                variant="outlined"
-                placeholder="Notas de manutenção..."
-                helperText="Notas de manutenção"
-                multiline
-                rows={5}
-                onChange={handleMaintenanceNotesChange}
-            />
         </Container>
     );
 };
