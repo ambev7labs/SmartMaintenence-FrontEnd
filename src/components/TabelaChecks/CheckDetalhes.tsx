@@ -63,6 +63,7 @@ const CheckDetalhesDialog: FC<AllProps> = (props: AllProps) => {
                 name: '',
                 procedures: [],
                 typeEquip: '',
+                userId: '',
             } as Check);
         }
     }, [props.equip]);

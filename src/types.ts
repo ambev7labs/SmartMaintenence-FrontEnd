@@ -30,6 +30,7 @@ export interface Check {
     field: string;
     typeEquip: string;
     frequency: number;
+    userId: string;
     period: string;
 }
 

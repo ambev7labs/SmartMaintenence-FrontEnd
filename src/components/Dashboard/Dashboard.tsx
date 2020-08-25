@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { Box, Grid, Typography, Paper, Container } from '@material-ui/core';
 import Deposits from './Deposits';
-import Orders from './Orders';
+import ListaChecksRecentes from './ListaChecks';
 import stylesDashboard from '../../styles/dashboard';
 import Copyright from '../ui/Copyright';
 import Title from '../ui/Title';
@@ -27,7 +27,7 @@ const Dashboard = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <Orders />
+                        <ListaChecksRecentes />
                     </Paper>
                 </Grid>
             </Grid>
