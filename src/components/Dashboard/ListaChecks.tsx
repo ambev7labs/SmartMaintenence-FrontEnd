@@ -21,7 +21,6 @@ const ListaChecksRecentes = () => {
     const [rows, setRows] = useState<Check[]>([]);
 
     useEffect(() => {
-        console.log('MONTANDO ORDERS');
         axios.get('/check/getLastFiveChecks/').then((response) => {
             setRows(response.data);
         });

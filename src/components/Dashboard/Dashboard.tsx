@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { Box, Grid, Typography, Paper, Container } from '@material-ui/core';
-import Deposits from './Deposits';
+import ContadorChecksDiario from './ContadorChecksDiario';
 import ListaChecksRecentes from './ListaChecks';
 import stylesDashboard from '../../styles/dashboard';
 import Copyright from '../ui/Copyright';
@@ -22,7 +22,7 @@ const Dashboard = () => {
                 </Grid>
                 <Grid item xs={12} md={4} lg={3}>
                     <Paper className={fixedHeightPaper}>
-                        <Deposits />
+                        <ContadorChecksDiario />
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
