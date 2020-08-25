@@ -102,9 +102,7 @@ const TabelaChecks = () => {
                         tooltip: 'Deletar',
                         onClick: () => {
                             axios
-                                .get(
-                                    `/machines/delete?name=${rowData.name}&period=${rowData.period}&frequency=${rowData.frequency}`
-                                )
+                                .delete(`/machines/${rowData._id}`)
                                 .then(() => {
                                     setAlertIsOn(true);
                                     setSuccesMessage('Check deletado com sucesso!');
