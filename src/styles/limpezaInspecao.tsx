@@ -51,6 +51,10 @@ const stylesLimpezaInspecao = makeStyles((theme) => ({
     accordion: {
         marginBottom: theme.spacing(1),
     },
+    procedimentoButton: {
+        marginLeft: 'auto',
+        marginBottom: '3%',
+    },
 }));
 
 export default stylesLimpezaInspecao;

@@ -189,6 +189,16 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                         onChange={props.handleReportComments}
                     />
                 </Container>
+                {props?.selectedEquipamento?.link && (
+                    <Button
+                        href={`${props.selectedEquipamento?.link}`}
+                        className={classes.procedimentoButton}
+                        variant="contained"
+                        color="primary"
+                    >
+                        Acessar Procedimento
+                    </Button>
+                )}
                 <div>
                     {activeStep === steps?.length - 1 ? (
                         <Container>

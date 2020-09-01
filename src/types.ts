@@ -13,6 +13,7 @@ export interface Equipamento {
     __v: number;
     frequency: number;
     period: string;
+    link?: string;
 }
 export interface Operarios {
     _id: string;
