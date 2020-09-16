@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://upbeat-franklin-143b53.netlify.app/",
   "dependencies": {
+    "@date-io/date-fns": "1.x",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -19,6 +20,7 @@
     "@types/recharts": "^1.8.15",
     "axios": "^0.19.2",
     "clsx": "^1.1.1",
+    "date-fns": "^2.16.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4.0.8",

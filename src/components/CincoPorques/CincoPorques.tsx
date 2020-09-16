@@ -7,13 +7,14 @@ import EquipamentoSection from './EquipamentoSection';
 import AcoesImediatasSection from './AcoesImediatasSection';
 import CincoPorquesSection from './CincoPorquesSection';
 import ConclusoesSection from './ConclusoesSection';
+import DataSection from './DataSection';
 import UserData from '../../contexts/UserData';
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 import { isNullOrUndefined } from 'util';
 
 const getSteps = () => {
-    return ['Equipamento', 'Ações Corretivas', '5 Porquês', 'Ações Preventivas'];
+    return ['Equipamento', 'Ações Corretivas', '5 Porquês', 'Data', 'Ações Preventivas'];
 };
 
 const dadosIniciais: CincoPorquesInfo = {
@@ -85,7 +86,8 @@ const CincoPorques = () => {
                                 {activeStep === 0 && <EquipamentoSection dados={dados} setDados={setDados} />}
                                 {activeStep === 1 && <AcoesImediatasSection dados={dados} setDados={setDados} />}
                                 {activeStep === 2 && <CincoPorquesSection dados={dados} setDados={setDados} />}
-                                {activeStep === 3 && <ConclusoesSection dados={dados} setDados={setDados} />}
+                                {activeStep === 3 && <DataSection dados={dados} setDados={setDados} />}
+                                {activeStep === 4 && <ConclusoesSection dados={dados} setDados={setDados} />}
                                 <div className={classes.actionsContainer}>
                                     <div>
                                         <Button

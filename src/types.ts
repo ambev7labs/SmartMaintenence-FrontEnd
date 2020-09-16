@@ -36,6 +36,17 @@ export interface Check {
     link?: string;
 }
 
+export interface CheckDashboardHome {
+    date: string;
+    name: string;
+    procedures: Procedimento[];
+    field: string;
+    machineName: string;
+    frequency: number;
+    userId: string;
+    period: string;
+}
+
 export interface Procedimento {
     _id: string;
     item: string;
