@@ -61,7 +61,7 @@ const MakeChecksPieGraphs = (props:GraphFilter ) => {
     } 
 
     let dataCheck = [
-        {name: 'checks', done : checks?.length, total: totalChecksByArea(userData.user.field)}
+        {name: 'Checks (%)', done : checks? (checks.length / totalChecksByArea(userData.user.field) * 100) : 0, total: 100}
     ]
 
     return(

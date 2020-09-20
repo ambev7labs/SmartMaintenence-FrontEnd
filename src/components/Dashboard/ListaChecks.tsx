@@ -17,7 +17,6 @@ const ListaChecksRecentes = () => {
 
     useEffect(() => {
         axios.get(`/check/getChecksOfTheDay?field=${userData.user.field}`).then((response) => {
-            console.log(response.data);
             setRows(response.data);
         });
     }, []);

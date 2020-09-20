@@ -62,8 +62,9 @@ const MakeItensPieGraphs = (props:GraphFilter ) => {
     }
         data = [
             {name: "Done", value : allItens?.itensDone},
-            {name: "Total", value: allItens?.itensTotal}
+            {name: "Total", value: (allItens? (allItens.itensTotal - allItens.itensDone) : 0)}
         ]
+
         return(
         <React.Fragment>
             <Title>{props.type} - {userData.user.field}</Title>
