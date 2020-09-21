@@ -47,7 +47,7 @@ const MakeItensPieGraphs = (props:GraphFilter ) => {
         const itensDone = itens.reduce((total, item) => {
             var alreadyDone = 0;
             var valor = calculaItens(item);     
-            itensTotal += valor ? valor: 0;
+            itensTotal = itensTotal + (valor ? valor: 0);
             item.procedures.forEach((procedure) => {
                 if(procedure && procedure.checked){
                      alreadyDone++;           
@@ -59,6 +59,7 @@ const MakeItensPieGraphs = (props:GraphFilter ) => {
             }
         }, {itensDone: 0, itensTotal: 0});
         allItens = itensDone;
+        allItens.itensTotal = itensTotal;
     }
         data = [
             {name: "Done", value : allItens?.itensDone},
