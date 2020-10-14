@@ -35,7 +35,6 @@ const MakeEquipamentList = (props: any) => {
   return (
     <>
       {(state!==undefined)&& state!== '' && state?.map((value: any, index: any) => (
-        
         <Card key={`${index}`} className={classes.AcordionNode} elevation={6} >
           <Accordion TransitionProps={{ unmountOnExit: true }} >
             <AccordionSummary
