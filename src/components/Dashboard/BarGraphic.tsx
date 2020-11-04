@@ -1,29 +1,29 @@
 import React, { PureComponent } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-export default class BarGraphic extends PureComponent<{data:any}> {
+interface Data {
+    name: string | undefined;
+    Realizados: string | undefined;
+    'Não Realizados': string | undefined; 
+}
 
+export default class BarGraphic extends PureComponent<{data:Data[]}> {
+    
     render() {
+        const {data} = this.props;
         return (
-            <BarChart
-                width={350}
-                height={200}
-                data={this.props.data}
-                margin={{
-                    top: 40,
-                    right: 0,
-                    left: 0,
-                    bottom: 0,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="done" fill="#8884d8" />
-                <Bar dataKey="total" fill="#82ca9d" />
-            </BarChart>
+            <ResponsiveContainer width={'100%'} height={'100%'}>    
+                <BarChart
+                    data={data}
+                >
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip offset={0} isAnimationActive={false} />
+                    <Legend />
+                    <Bar barSize={70} dataKey="Realizados" fill="#008744" />
+                    <Bar barSize={70} dataKey="Não Realizados" fill="#d62d20" />
+                </BarChart>
+            </ResponsiveContainer>
         );
     }
 }
