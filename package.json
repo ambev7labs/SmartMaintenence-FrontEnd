@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://upbeat-franklin-143b53.netlify.app/",
+  "homepage": "https://smaintenance.vercel.app/login",
   "dependencies": {
     "@date-io/date-fns": "1.x",
     "@material-ui/core": "^4.11.0",
@@ -36,7 +36,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI= react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
