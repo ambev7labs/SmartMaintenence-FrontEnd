@@ -20,6 +20,7 @@ import FiltroLimpezaInspecao from './FiltroLimpezaInspecao/FiltroLimpezaInspecao
 import FiltroCincoPorques from './FiltroCincoPorques/FiltroCincoPorques';
 import Cadastrar from './Cadastrar/Cadastrar';
 import UserProfileDetails from './UserProfileDetails/UserProfileDetails';
+import GraphsByMachine from './GraphsByMachine/GraphsByMachine';
 
 const App = () => {
     const classes = stylesDashboard();
@@ -63,8 +64,10 @@ const App = () => {
                     <Route path="/cadastrar">
                         <Cadastrar />
                     </Route>
+                </Switch>  
                     {isNullOrUndefined(cookies.user?.userId) ? (
                         <Redirect to="/login" />
+                                      
                     ) : (
                         <div className={classes.root}>
                             <CssBaseline />
@@ -81,6 +84,9 @@ const App = () => {
                                     </Route>
                                     <Route path="/checks">
                                         <TabelaChecks />
+                                    </Route>
+                                    <Route path="/graphs">
+                                        <GraphsByMachine />
                                     </Route>
                                     <Route path="/perfil">
                                         <UserProfileDetails />
@@ -107,7 +113,6 @@ const App = () => {
                             </main>
                         </div>
                     )}
-                </Switch>
             </UserData.Provider>
         </Router>
     );

@@ -34,6 +34,7 @@ export interface Check {
     userId: string;
     period: string;
     link?: string;
+    report?: string;
 }
 
 export interface CheckDashboardHome {
@@ -111,4 +112,9 @@ export interface LimpezaInspecaoInfo {
     field: string;
     machineName: string;
     report: string;
+}
+
+export interface ChecksAndItensTotais {
+    checks: number;
+    itens: number;
 }
