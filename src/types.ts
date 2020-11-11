@@ -3,6 +3,24 @@ export interface GrupoEquipamento {
     title: string;
 }
 
+export interface GrupoLubMachine {
+    id: number;
+    typeEquip: string;
+}
+
+export interface LubMachine {
+    date: string;
+    _id: string;
+    name: string;
+    procedures: LubProcedure[];
+    field: string;
+    typeEquip: string;
+    __v: number;
+    frequency: number;
+    period: string;
+    link?: string;
+}
+
 export interface Equipamento {
     date: string;
     _id: string;
@@ -48,6 +66,19 @@ export interface CheckDashboardHome {
     period: string;
 }
 
+
+export interface LubProcedure {
+    _id: string;
+    item: string;
+    description: string;
+    method: string;
+    location: string;
+    point: number;
+    checked: boolean;
+    condition: 'PARADA' | 'RODANDO';
+    lubricant: string;
+}
+
 export interface Procedimento {
     _id: string;
     item: string;
@@ -76,7 +107,7 @@ export interface Relatorio {
     field: string;
     machineName: string;
     report: string;
-    arrayAllPages: Procedimento[]; // procedimentos
+    arrayAllPages: Procedimento[] | LubProcedure[]; // procedimentos
 }
 
 export interface Porque {
@@ -107,6 +138,17 @@ export interface LimpezaInspecaoInfo {
     period: string;
     frequency: number;
     arrayAllPages: Procedimento[][];
+    date: Date;
+    userId: string;
+    field: string;
+    machineName: string;
+    report: string;
+}
+
+export interface LubrificacaoInfo {
+    period: string;
+    frequency: number;
+    arrayAllPages: LubProcedure[][];
     date: Date;
     userId: string;
     field: string;
