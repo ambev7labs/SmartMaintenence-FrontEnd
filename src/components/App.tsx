@@ -7,6 +7,7 @@ import AppDrawer from './ui/AppDrawer';
 import DefaultAppBar from './ui/DefaultAppBar';
 import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import LimpezaInspecao from './LimpezaInspecao/LimpezaInspecao';
+import Lubrificacao from './Lubrificacao/Lubrificacao';
 import Login from './Login/Login';
 import UserData from '../contexts/UserData';
 import { isNullOrUndefined } from 'util';
@@ -42,8 +43,8 @@ const App = () => {
     axios.defaults.headers = {
         'Content-Type': 'application/json',
     };
-    //axios.defaults.baseURL = 'http://localhost:3333';
-    axios.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/http://3.17.151.221:3333';
+    axios.defaults.baseURL = 'http://localhost:3333';
+    // axios.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/http://3.17.151.221:3333';
     axios.interceptors.response.use(
         (response) => {
             return response;
@@ -78,6 +79,9 @@ const App = () => {
                                 <Switch>
                                     <Route path="/limp-insp">
                                         <LimpezaInspecao />
+                                    </Route>
+                                    <Route path="/lubrificacao">
+                                        <Lubrificacao/>
                                     </Route>
                                     <Route path="/5w">
                                         <CincoPorques />
