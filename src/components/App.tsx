@@ -15,6 +15,7 @@ import { useCookies } from 'react-cookie';
 import { User } from '../types';
 import CincoPorques from './CincoPorques/CincoPorques';
 import TabelaChecks from './TabelaChecks/TabelaChecks';
+import TabelaLubrificacao from './TabelaLubrificacao/TabelaLubrificacao'
 import TabelaOperarios from './TabelaOperarios/TabelaOperarios';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FiltroLimpezaInspecao from './FiltroLimpezaInspecao/FiltroLimpezaInspecao';
@@ -89,6 +90,9 @@ const App = () => {
                                     <Route path="/checks">
                                         <TabelaChecks />
                                     </Route>
+                                    <Route path="/lubrificacoes">
+                                        <TabelaLubrificacao />
+                                    </Route>
                                     <Route path="/graphs">
                                         <GraphsByMachine />
                                     </Route>
@@ -105,6 +109,7 @@ const App = () => {
                                             <FiltroLimpezaInspecao />
                                         </Route>
                                     )}
+                                    
                                     {(cookies.user?.admin || cookies.user?.field === 'Engenharia') && (
                                         <Route path="/filtro-5w">
                                             <FiltroCincoPorques />

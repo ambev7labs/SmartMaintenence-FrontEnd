@@ -5,7 +5,7 @@ export interface GrupoEquipamento {
 
 export interface GrupoLubMachine {
     id: number;
-    typeEquip: string;
+    title: string;
 }
 
 export interface LubMachine {
@@ -19,6 +19,8 @@ export interface LubMachine {
     frequency: number;
     period: string;
     link?: string;
+    lublink?:string;
+    layout?:string;
 }
 
 export interface Equipamento {
@@ -52,6 +54,19 @@ export interface Check {
     userId: string;
     period: string;
     link?: string;
+    report?: string;
+}
+
+export interface LubCheck {
+    date: string;
+    name: string;
+    lubprocedures: LubProcedure[];
+    field: string;
+    typeEquip: string;
+    frequency: number;
+    userId: string;
+    period: string;
+    lublink?: string;
     report?: string;
 }
 

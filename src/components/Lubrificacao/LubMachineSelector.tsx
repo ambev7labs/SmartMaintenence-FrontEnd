@@ -21,15 +21,16 @@ const LubMachineSelector: FC<AllProps> = (props: AllProps) => {
 
     useEffect(() => {
         axios
-            .get(`/lubMachines/index?field=${userData.user?.field}&group=${props.grupo}`)
+            .get(`/lubEquip/indexbyequip?field=${userData.user?.field}&group=${props.grupo}`)
             .then((response) => {
+                console.log(response);
                 response.data.map((lubMachine: LubMachine) => {
                     lubMachine.procedures.map((procedure) => (procedure.checked = false));
                 });
                 props.setLubMachinesDoGrupo(response.data);
             })
             .catch((e) => {
-                console.error('Não foi possível listar os lubMachines', e);
+                console.error('Não foi possível listar os checks de lubrificação', e);
             });
     }, [props.grupo, userData.user.field]);
 
@@ -46,11 +47,13 @@ const LubMachineSelector: FC<AllProps> = (props: AllProps) => {
                 <MenuItem value="" disabled>
                     Nenhum
                 </MenuItem>
-                {props.lubMachinesDoGrupo?.map((lubMachine, index) => (
+                {props.lubMachinesDoGrupo?.map((lubMachine, index) => {
+                    console.log(lubMachine);
+                    return(
                     <MenuItem key={'lubMachine-limp-insp-' + index} value={lubMachine._id}>
                         {lubMachine.name + ' (' + lubMachine.period + ' ' + lubMachine.frequency + 'x)'}
-                    </MenuItem>
-                ))}
+                    </MenuItem>)
+                })}
             </Select>
             <FormHelperText>Selecione um LubMachine</FormHelperText>
         </FormControl>

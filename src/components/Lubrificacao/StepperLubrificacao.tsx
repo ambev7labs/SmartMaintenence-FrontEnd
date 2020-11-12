@@ -52,7 +52,7 @@ const StepperSummary: FC<AllSummaryProps> = (props: AllSummaryProps) => {
     const classes = stylesLimpezaInspecao();
     return (
         <Container>
-            <Title>Resumo da Inspeção</Title>
+            <Title>Resumo da Lubrificação</Title>
             <List>
                 {props.lubMachine?.procedures?.map((procedure) => (
                     <ListItem
@@ -162,7 +162,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
             <div className={classes.stepperRoot}>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps?.map((label, index) => (
-                        <Step key={`step-limpeza-inspecao-${index}`}>
+                        <Step key={`step-lubrificacao-${index}`}>
                             <StepLabel>{label}</StepLabel>
                         </Step>
                     ))}
@@ -181,7 +181,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                     </div>
                 ))}
                 <Container>
-                    <Title>Feedback da inspeção</Title>
+                    <Title>Feedback da lubrificação</Title>
                     <TextField
                         className={classes.reportComments}
                         placeholder="Houve algum problema durante a inspeção/limpeza? Conte-nos"
@@ -201,7 +201,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                         variant="contained"
                         color="primary"
                     >
-                        Acessar LubProcedure
+                        Acessar procedimento
                     </Button>
                 )}
                 <div>
