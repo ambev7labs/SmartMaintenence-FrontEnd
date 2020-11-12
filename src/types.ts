@@ -60,7 +60,7 @@ export interface Check {
 export interface LubCheck {
     date: string;
     name: string;
-    lubprocedures: LubProcedure[];
+    procedures: LubProcedure[];
     field: string;
     typeEquip: string;
     frequency: number;

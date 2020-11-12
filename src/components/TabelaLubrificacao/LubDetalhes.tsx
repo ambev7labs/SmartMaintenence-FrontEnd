@@ -48,7 +48,7 @@ const CheckDetalhesDialog: FC<AllProps> = (props: AllProps) => {
     };
 
     const handleChangeProcedures = (value: LubProcedure[]) => {
-        setNewCheck({ ...newCheck, lubprocedures: value });
+        setNewCheck({ ...newCheck, procedures: value });
     };
 
     useEffect(() => {
@@ -63,7 +63,7 @@ const CheckDetalhesDialog: FC<AllProps> = (props: AllProps) => {
                 frequency: 0,
                 period: 'diário',
                 name: '',
-                lubprocedures: [],
+                procedures: [],
                 typeEquip: '',
                 userId: '',
                 link: 'http://',
@@ -163,7 +163,7 @@ const CheckDetalhesDialog: FC<AllProps> = (props: AllProps) => {
                     }}
                 />
                 <Divider />
-                <ListaProcedimentos lubprocedures={newCheck.lubprocedures} handleChangeProcedures={handleChangeProcedures} />
+                <ListaProcedimentos lubprocedures={newCheck.procedures} handleChangeProcedures={handleChangeProcedures} />
             </Container>
             <DialogActions>
                 <Button

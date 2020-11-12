@@ -55,7 +55,7 @@ const LubMachineSelector: FC<AllProps> = (props: AllProps) => {
                     </MenuItem>)
                 })}
             </Select>
-            <FormHelperText>Selecione um LubMachine</FormHelperText>
+            <FormHelperText>Selecione um Equipamento para Lubrificação</FormHelperText>
         </FormControl>
     );
 };

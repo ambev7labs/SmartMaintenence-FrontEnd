@@ -125,6 +125,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                                 <AccordionDetails>
                                     <Container>
                                         <Typography>{`Método: ${procedure.method}`}</Typography>
+                                        <Typography>{`Lubrificante: ${procedure.lubricant}`}</Typography>
                                         <Divider className={classes.procedureDivider} />
                                         <Typography className={classes.procedureAttribute}>
                                             {`- Condições da Máquina: ${procedure.condition}`}
@@ -138,6 +139,9 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                                     </Container>
                                     <Checkbox
                                         className={classes.checkbox}
+                                        style={{
+                                            transform: "scale(1.5)",
+                                        }}
                                         checked={procedure.checked}
                                         color="primary"
                                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,7 +188,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                     <Title>Feedback da lubrificação</Title>
                     <TextField
                         className={classes.reportComments}
-                        placeholder="Houve algum problema durante a inspeção/limpeza? Conte-nos"
+                        placeholder="Houve algum problema durante a lubrificação? Conte-nos"
                         variant="outlined"
                         multiline
                         rows={6}

@@ -49,7 +49,7 @@ const GrupoLubMachineSelector: FC<AllProps> = (props: AllProps) => {
                     </MenuItem>
                 ))}
             </Select>
-            <FormHelperText>Selecione um Grupo</FormHelperText>
+            <FormHelperText>Selecione um Grupo de Equipamentos</FormHelperText>
         </FormControl>
     );
 };
