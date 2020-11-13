@@ -114,9 +114,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
         const slicedProcedures = procedures.slice(from, to);
         return (
             <React.Fragment>
-                {slicedProcedures?.map((procedure) => {
-                    console.log(procedure);
-                    return (
+                {slicedProcedures?.map((procedure) => (
                         <Container className={classes.accordion} key={`lubProcedure-${procedure._id}`}>
                             <Accordion className={procedure.checked ? classes.markedAccordion : undefined}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -156,7 +154,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                             </Accordion>
                         </Container>
                     )
-                })}
+                )}
             </React.Fragment>
         );
     };

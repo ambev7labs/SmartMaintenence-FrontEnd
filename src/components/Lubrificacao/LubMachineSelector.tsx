@@ -23,7 +23,6 @@ const LubMachineSelector: FC<AllProps> = (props: AllProps) => {
         axios
             .get(`/lubEquip/indexbyequip?field=${userData.user?.field}&group=${props.grupo}`)
             .then((response) => {
-                console.log(response);
                 response.data.map((lubMachine: LubMachine) => {
                     lubMachine.procedures.map((procedure) => (procedure.checked = false));
                 });
@@ -39,7 +38,7 @@ const LubMachineSelector: FC<AllProps> = (props: AllProps) => {
         props.setSelectedLubMachine(
             props.lubMachinesDoGrupo?.filter((equi) => equi._id === (event.target.value as string))[0]
         );
-    };
+    };  
 
     return (
         <FormControl className={classes.selector} variant="outlined">
@@ -48,9 +47,8 @@ const LubMachineSelector: FC<AllProps> = (props: AllProps) => {
                     Nenhum
                 </MenuItem>
                 {props.lubMachinesDoGrupo?.map((lubMachine, index) => {
-                    console.log(lubMachine);
                     return(
-                    <MenuItem key={'lubMachine-limp-insp-' + index} value={lubMachine._id}>
+                    <MenuItem key={'lubMachine-' + index} value={lubMachine._id}>
                         {lubMachine.name + ' (' + lubMachine.period + ' ' + lubMachine.frequency + 'x)'}
                     </MenuItem>)
                 })}
