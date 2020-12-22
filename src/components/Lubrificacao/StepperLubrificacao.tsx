@@ -52,7 +52,7 @@ const StepperSummary: FC<AllSummaryProps> = (props: AllSummaryProps) => {
     const classes = stylesLimpezaInspecao();
     return (
         <Container>
-            <Title>Resumo da Inspeção</Title>
+            <Title>Resumo da Lubrificação</Title>
             <List>
                 {props.lubMachine?.procedures?.map((procedure) => (
                     <ListItem
@@ -114,9 +114,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
         const slicedProcedures = procedures.slice(from, to);
         return (
             <React.Fragment>
-                {slicedProcedures?.map((procedure) => {
-                    console.log(procedure);
-                    return (
+                {slicedProcedures?.map((procedure) => (
                         <Container className={classes.accordion} key={`lubProcedure-${procedure._id}`}>
                             <Accordion className={procedure.checked ? classes.markedAccordion : undefined}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -125,6 +123,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                                 <AccordionDetails>
                                     <Container>
                                         <Typography>{`Método: ${procedure.method}`}</Typography>
+                                        <Typography>{`Lubrificante: ${procedure.lubricant}`}</Typography>
                                         <Divider className={classes.procedureDivider} />
                                         <Typography className={classes.procedureAttribute}>
                                             {`- Condições da Máquina: ${procedure.condition}`}
@@ -138,6 +137,9 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                                     </Container>
                                     <Checkbox
                                         className={classes.checkbox}
+                                        style={{
+                                            transform: "scale(1.5)",
+                                        }}
                                         checked={procedure.checked}
                                         color="primary"
                                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -152,7 +154,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                             </Accordion>
                         </Container>
                     )
-                })}
+                )}
             </React.Fragment>
         );
     };
@@ -162,7 +164,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
             <div className={classes.stepperRoot}>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps?.map((label, index) => (
-                        <Step key={`step-limpeza-inspecao-${index}`}>
+                        <Step key={`step-lubrificacao-${index}`}>
                             <StepLabel>{label}</StepLabel>
                         </Step>
                     ))}
@@ -181,10 +183,10 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                     </div>
                 ))}
                 <Container>
-                    <Title>Feedback da inspeção</Title>
+                    <Title>Feedback da lubrificação</Title>
                     <TextField
                         className={classes.reportComments}
-                        placeholder="Houve algum problema durante a inspeção/limpeza? Conte-nos"
+                        placeholder="Houve algum problema durante a lubrificação? Conte-nos"
                         variant="outlined"
                         multiline
                         rows={6}
@@ -201,7 +203,7 @@ const StepperLimpezaInspecao: FC<AllProps> = (props: AllProps) => {
                         variant="contained"
                         color="primary"
                     >
-                        Acessar LubProcedure
+                        Acessar procedimento
                     </Button>
                 )}
                 <div>

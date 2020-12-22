@@ -42,9 +42,8 @@ const Lubrificacao = () => {
             machineName: selectedLubMachine?.name || '',
             report: reportComments,
         };
-
         axios
-            .post('/check/create', dados)
+            .post('/lubrification/create', dados)
             .then(() => {
                 setIsRequestSent(true);
                 setErrorMessage(undefined);
@@ -60,7 +59,7 @@ const Lubrificacao = () => {
     return (
         <Container className={classes.container}>
             <Container className={classes.selectorContainer}>
-                <Title>Limpeza e Inspeção</Title>
+                <Title>Lubrificação</Title>
                 <GrupoLubMachineSelector
                     grupos={grupos}
                     setGrupos={setGrupos}

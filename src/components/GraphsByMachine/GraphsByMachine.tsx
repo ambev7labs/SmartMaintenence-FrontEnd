@@ -58,6 +58,21 @@ const GraphsByMachine = () => {
       });
   };
 
+  const handleExcelClick = () => {
+    let inicial = selectedInicialDate?.toISOString().split("T")[0];
+    let final = selectedEndDate?.toISOString().split("T")[0];
+    axios
+      .get(`/machines/excel`,{responseType: 'blob'})
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data], {type:'application/vnd.ms-excel'}));
+        const link = document.createElement('a');  
+        link.href = url;
+        link.setAttribute('download', `Checks do ${selectedInicialDate?.getDate()} até dia ${selectedEndDate?.getDate()}.xlsx`);
+        document.body.appendChild(link);
+        link.click();   
+      });
+  };
+
   const handleSelectEquip = (equip: string | unknown) => {
     if (equip) {
       setEquipamento(equip);
@@ -90,7 +105,7 @@ const GraphsByMachine = () => {
               animateYearScrolling={false}
               margin="normal"
               id="initial-date-dialog"
-              label="Date inicial"
+              label="Data inicial"
               format="dd/MM/yyyy"
               disableFuture={true}
               value={selectedInicialDate}
@@ -105,7 +120,7 @@ const GraphsByMachine = () => {
               animateYearScrolling={false}
               margin="normal"
               id="end-date-dialog"
-              label="Date picker dialog"
+              label="Data Final"
               format="dd/MM/yyyy"
               disableFuture={true}
               value={selectedEndDate}
@@ -122,6 +137,14 @@ const GraphsByMachine = () => {
             >
               Pesquisar
             </Button>
+            {selectedInicialDate && selectedEndDate ? (<Button
+              variant="contained"
+              onClick={handleExcelClick}
+              style={{ padding: "0.8rem" }}
+              color="primary"
+            >
+              Exportar para Excel
+            </Button>) : null}
           </Grid>
         </MuiPickersUtilsProvider>
         {allChecks.length < 1 ? (

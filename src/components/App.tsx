@@ -15,6 +15,7 @@ import { useCookies } from 'react-cookie';
 import { User } from '../types';
 import CincoPorques from './CincoPorques/CincoPorques';
 import TabelaChecks from './TabelaChecks/TabelaChecks';
+import TabelaLubrificacao from './TabelaLubrificacao/TabelaLubrificacao'
 import TabelaOperarios from './TabelaOperarios/TabelaOperarios';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FiltroLimpezaInspecao from './FiltroLimpezaInspecao/FiltroLimpezaInspecao';
@@ -43,8 +44,8 @@ const App = () => {
     axios.defaults.headers = {
         'Content-Type': 'application/json',
     };
-    axios.defaults.baseURL = 'http://localhost:3333';
-    // axios.defaults.baseURL = 'https://cors-anywhere.herokuapp.com/http://3.17.151.221:3333';
+    //axios.defaults.baseURL = 'http://localhost:3333';
+    axios.defaults.baseURL = 'https://smaintenance.herokuapp.com';
     axios.interceptors.response.use(
         (response) => {
             return response;
@@ -64,11 +65,9 @@ const App = () => {
                     </Route>
                     <Route path="/cadastrar">
                         <Cadastrar />
-                    </Route>
-                </Switch>  
+                    </Route> 
                     {isNullOrUndefined(cookies.user?.userId) ? (
-                        <Redirect to="/login" />
-                                      
+                        <Redirect to="/login" />                                  
                     ) : (
                         <div className={classes.root}>
                             <CssBaseline />
@@ -76,7 +75,7 @@ const App = () => {
                             <DefaultAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
                             <main className={classes.content}>
                                 <div className={classes.appBarSpacer} />
-                                <Switch>
+                                   <Switch>
                                     <Route path="/limp-insp">
                                         <LimpezaInspecao />
                                     </Route>
@@ -88,6 +87,9 @@ const App = () => {
                                     </Route>
                                     <Route path="/checks">
                                         <TabelaChecks />
+                                    </Route>
+                                    <Route path="/lubrificacoes">
+                                        <TabelaLubrificacao />
                                     </Route>
                                     <Route path="/graphs">
                                         <GraphsByMachine />
@@ -105,6 +107,7 @@ const App = () => {
                                             <FiltroLimpezaInspecao />
                                         </Route>
                                     )}
+                                    
                                     {(cookies.user?.admin || cookies.user?.field === 'Engenharia') && (
                                         <Route path="/filtro-5w">
                                             <FiltroCincoPorques />
@@ -116,7 +119,8 @@ const App = () => {
                                 </Switch>
                             </main>
                         </div>
-                    )}
+                        )}
+                    </Switch>
             </UserData.Provider>
         </Router>
     );

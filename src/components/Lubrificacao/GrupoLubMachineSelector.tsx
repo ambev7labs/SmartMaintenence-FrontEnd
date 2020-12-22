@@ -21,7 +21,7 @@ const GrupoLubMachineSelector: FC<AllProps> = (props: AllProps) => {
 
     useEffect(() => {
         axios
-            .get(`/lubMachines/index?field=${userData.user.field}`)
+            .get(`/lubEquip/index?field=${userData.user.field}`)
             .then((response) => {
                 props.setGrupos(response.data);
             })
@@ -44,12 +44,12 @@ const GrupoLubMachineSelector: FC<AllProps> = (props: AllProps) => {
                     Nenhum
                 </MenuItem>
                 {props.grupos?.map((data, index) => (
-                    <MenuItem key={'grupoequipamento-limp-insp-' + index} value={data.typeEquip}>
-                        {data.typeEquip}
+                    <MenuItem key={'grupoequipamento-lubrificacao' + index} value={data.title}>
+                        {data.title}
                     </MenuItem>
                 ))}
             </Select>
-            <FormHelperText>Selecione um Grupo</FormHelperText>
+            <FormHelperText>Selecione um Grupo de Equipamentos</FormHelperText>
         </FormControl>
     );
 };
