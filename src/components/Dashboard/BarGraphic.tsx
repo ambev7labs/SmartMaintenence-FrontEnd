@@ -1,29 +1,59 @@
-import React, { PureComponent } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { PureComponent } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import ModalEquipaments from "../Modal/ModalEquipaments";
 
 interface Data {
-    name: string | undefined;
-    Realizados: string | undefined;
-    'Não Realizados': string | undefined; 
+  name: string | undefined;
+  Realizados: string | undefined;
+  "Não Realizados": string | undefined;
 }
 
-export default class BarGraphic extends PureComponent<{data:Data[]}> {
-    
-    render() {
-        const {data} = this.props;
-        return (
-            <ResponsiveContainer width={'100%'} height={'100%'}>    
-                <BarChart
-                    data={data}
-                >
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip offset={0} isAnimationActive={false} />
-                    <Legend />
-                    <Bar barSize={70} dataKey="Realizados" fill="#008744" />
-                    <Bar barSize={70} dataKey="Não Realizados" fill="#d62d20" />
-                </BarChart>
-            </ResponsiveContainer>
-        );
-    }
+interface states{
+  open:boolean;
 }
+
+class BarGraphic extends PureComponent<{ data: Data[] },states> {
+  constructor(props:any) {
+    super(props);
+    this.state = {
+      open: false
+    };
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+    handleOpen() {
+        this.setState({open:true})
+    }
+    handleClose() {
+        this.setState({open:false})
+    }
+
+  render() {
+    const { data } = this.props;
+    const openModal = this.state.open;
+    return (
+      <>
+        <ModalEquipaments open={openModal} close={this.handleClose} />
+        <ResponsiveContainer width={"100%"} height={"100%"}>
+          <BarChart data={data} onClick={this.handleOpen}>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip offset={0} isAnimationActive={false} />
+            <Legend />
+            <Bar barSize={70} dataKey="Realizados" fill="#008744" />
+            <Bar barSize={70} dataKey="Não Realizados" fill="#d62d20" />
+          </BarChart>
+        </ResponsiveContainer>
+      </>
+    );
+  }
+}
+export default BarGraphic;
