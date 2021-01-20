@@ -8,7 +8,6 @@ import stylesDashboard from '../../styles/dashboard';
 import Copyright from '../ui/Copyright';
 import Title from '../ui/Title';
 import MakeChecksPieGraphs from './ChecksGraphs';
-import MakeItensPieGraphs from './ItensGraphs';
 import axios from 'axios';
 import { Check } from '../../types';
 import { ChecksAndItensTotais } from '../../types';
@@ -29,7 +28,6 @@ const Dashboard = () => {
             axios.get(`/lubrification/getChecksByMonth?month=${month}&field=${userData.user.field}`),
             axios.get(`/lubmachines/count?field=${userData.user.field}`),
         ]).then(axios.spread((...response) => {
-            console.log(response);
             setChecksAndItens(response[0].data.filter((dat: any) => {
                 return dat.field === String(userData.user.field)
             }));
@@ -42,7 +40,7 @@ const Dashboard = () => {
 },[userData.user.field]);
 
     return (
-        <Container maxWidth="lg" className={classes.container}>
+        <Container className={classes.container}>
             <Title>Bem vindo ao Smart Maintenance</Title>
             <Grid container spacing={3}>
             <Grid item xs={12} md={4} lg={4}>
