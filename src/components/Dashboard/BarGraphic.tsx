@@ -42,10 +42,10 @@ class BarGraphic extends PureComponent<{ data: Data[] },states> {
     return (
       <>
         <ModalEquipaments open={openModal} close={this.handleClose} />
-        <ResponsiveContainer width={"100%"} height={"100%"}>
-          <BarChart data={data} onClick={this.handleOpen}>
+        <ResponsiveContainer width="100%" height="100%" aspect={1.25}>
+          <BarChart  data={data} onClick={this.handleOpen}>
             <XAxis dataKey="name" />
-            <YAxis />
+            <YAxis domain={[0,100]}/>
             <Tooltip offset={0} isAnimationActive={false} />
             <Legend />
             <Bar barSize={70} dataKey="Realizados" fill="#008744" />
