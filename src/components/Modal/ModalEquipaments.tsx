@@ -25,7 +25,7 @@ const ModalEquipaments = (props: any) => {
             <CloseIcon />
           </IconButton>
       </DialogTitle>
-      <EquipsGraphs />
+      <EquipsGraphs data={props.data}/>
     </Dialog>
     </Container>
   );
