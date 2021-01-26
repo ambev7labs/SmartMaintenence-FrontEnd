@@ -13,6 +13,8 @@ export default class Example extends PureComponent <{data:any}>{
   state = {
     data: this.props.data,
     activeIndex: 10000,
+    prepareData:''
+    
   };
 
   handleClick = (data: any, index: number) => {
@@ -21,17 +23,44 @@ export default class Example extends PureComponent <{data:any}>{
     });
   };
 
+  /*componentDidMount() {
+    
+  }*/
+
+  componentDidUpdate(prevProps:any, prevState:any){
+    if(prevState!==prevProps){
+      this.setState({prepareData:prevProps})
+    }
+  }
+
   render() {
     const { activeIndex, data } = this.state;
 
+    const orderByMachine:Object = data.reduce((acc: any, obj:any) => {
+      let key = obj.machineName;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(obj);
+      return acc;
+    }, {});
+    const machinesNames = Object.keys(orderByMachine)
+    let prepareData= []
+    let index = 0
+    for(let machine of Object.values(orderByMachine)){
+      prepareData.push({name:machinesNames[index],
+                            valueUntilDate: Object.entries(machine).length 
+                          })
+          index++;                
+    }
+    this.componentDidUpdate(prepareData,this.state.prepareData);
     return (
       <>
-        <ResponsiveContainer width="100%" height='85%'>
-          <BarChart data={data}>
+        <ResponsiveContainer width="100%" height='90%'>
+          <BarChart data={prepareData}>
             <Tooltip isAnimationActive={false} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name" dy={10} height={45} angle={-45} />
-            <Bar barSize={50} dataKey="uv" onClick={this.handleClick}>
+            <XAxis dataKey="name" dy={100} dx={-10} interval={0} height={250} angle={-90} />
+            <Bar barSize={50} dataKey="valueUntilDate" onClick={this.handleClick}>
               {data.map((entry:any, index:number) => (
                 <Cell cursor="pointer" fill={index === activeIndex ? '' : (data[index].uv / data[index].pv   >= 1 ? '#259A3D' : '#D82B22' )}  key={`celluv-${index}`} />
               ))}
