@@ -36,7 +36,7 @@ const MakeChecksPieGraphs = (props:GraphFilter ) => {
                 {`${props.type} esperados no mês: ${totalChecksByArea}`}
             </Typography>
             { totalChecksByArea===undefined && <CircularProgress /> }
-            { totalChecksByArea!==undefined && <BarGraphic data={dataCheck} />}
+            { totalChecksByArea!==undefined && <BarGraphic data={dataCheck} modal={checks} />}
         </React.Fragment>
     )
 

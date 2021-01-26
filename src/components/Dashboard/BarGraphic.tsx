@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import ModalEquipaments from "../Modal/ModalEquipaments";
+import { Check } from '../../types';
 
 interface Data {
   name: string | undefined;
@@ -20,7 +21,7 @@ interface states{
   open:boolean;
 }
 
-class BarGraphic extends PureComponent<{ data: Data[] },states> {
+class BarGraphic extends PureComponent<{ data: Data[], modal: Check[] | null },states> {
   constructor(props:any) {
     super(props);
     this.state = {
@@ -41,7 +42,7 @@ class BarGraphic extends PureComponent<{ data: Data[] },states> {
     const openModal = this.state.open;
     return (
       <>
-        <ModalEquipaments open={openModal} close={this.handleClose} />
+        <ModalEquipaments open={openModal} close={this.handleClose} data={this.props.modal} />
         <ResponsiveContainer width="100%" height="100%" aspect={1.25}>
           <BarChart  data={data} onClick={this.handleOpen}>
             <XAxis dataKey="name" />

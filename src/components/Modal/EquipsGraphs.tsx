@@ -9,182 +9,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: -3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: -2000,
-    pv: -9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: -1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: -3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
-
-export default class Example extends PureComponent {
-  static jsfiddleUrl = "https://jsfiddle.net/alidingling/7has60ua/";
-
+export default class Example extends PureComponent <{data:any}>{
   state = {
-    data: [
-      {
-        name: "Page A",
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-      },
-      {
-        name: "Page B",
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-      },
-      {
-        name: "Page C",
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-      },
-      {
-        name: "Page D",
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-      },
-      {
-        name: "Page E",
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-      },
-      {
-        name: "Page F",
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-      },
-      {
-        name: "Page G",
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-      },{
-        name: "Page A",
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-      },
-      {
-        name: "Page B",
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-      },
-      {
-        name: "Page C",
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-      },
-      {
-        name: "Page D",
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-      },
-      {
-        name: "Page E",
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-      },
-      {
-        name: "Page F",
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-      },
-      {
-        name: "Page G",
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-      },{
-        name: "Page A",
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-      },
-      {
-        name: "Page B",
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-      },
-      {
-        name: "Page C",
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-      },
-      {
-        name: "Page D",
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-      },
-      {
-        name: "Page E",
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-      },
-      {
-        name: "Page F",
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-      },
-      {
-        name: "Page G",
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-      }
-    ],
+    data: this.props.data,
     activeIndex: 10000,
+    prepareData:''
+    
   };
 
   handleClick = (data: any, index: number) => {
@@ -193,28 +23,55 @@ export default class Example extends PureComponent {
     });
   };
 
+  /*componentDidMount() {
+    
+  }*/
+
+  componentDidUpdate(prevProps:any, prevState:any){
+    if(prevState!==prevProps){
+      this.setState({prepareData:prevProps})
+    }
+  }
+
   render() {
     const { activeIndex, data } = this.state;
 
+    const orderByMachine:Object = data.reduce((acc: any, obj:any) => {
+      let key = obj.machineName;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(obj);
+      return acc;
+    }, {});
+    const machinesNames = Object.keys(orderByMachine)
+    let prepareData= []
+    let index = 0
+    for(let machine of Object.values(orderByMachine)){
+      prepareData.push({name:machinesNames[index],
+                            valueUntilDate: Object.entries(machine).length 
+                          })
+          index++;                
+    }
+    this.componentDidUpdate(prepareData,this.state.prepareData);
     return (
       <>
-        <ResponsiveContainer width="100%" height='85%'>
-          <BarChart data={data}>
+        <ResponsiveContainer width="100%" height='90%'>
+          <BarChart data={prepareData}>
             <Tooltip isAnimationActive={false} />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <XAxis dataKey="name" dy={10} height={45} angle={-45} />
-            <Bar barSize={50} dataKey="uv" onClick={this.handleClick}>
-              {data.map((entry, index) => (
+            <XAxis dataKey="name" dy={100} dx={-10} interval={0} height={250} angle={-90} />
+            <Bar barSize={50} dataKey="valueUntilDate" onClick={this.handleClick}>
+              {data.map((entry:any, index:number) => (
                 <Cell cursor="pointer" fill={index === activeIndex ? '' : (data[index].uv / data[index].pv   >= 1 ? '#259A3D' : '#D82B22' )}  key={`celluv-${index}`} />
               ))}
             </Bar>
             <Bar barSize={50} dataKey="pv" onClick={this.handleClick}>
-              {data.map((entry, index) => (
+              {data.map((entry:any, index:number) => (
                 <Cell cursor="pointer" fill={index === activeIndex ? '' : "#4c85f4"}  key={`cellpv-${index}`} />
               ))}
             </Bar>
             <Bar barSize={50} dataKey="amt" onClick={this.handleClick}>
-              {data.map((entry, index) => (
+              {data.map((entry:any, index:number) => (
                 <Cell cursor="pointer" fill={index === activeIndex ? '' : "#07038C"}  key={`cellamt-${index}`} />
               ))}
             </Bar>
