@@ -7,6 +7,7 @@ import {
   XAxis,
   Tooltip,
   ResponsiveContainer,
+  LabelList,
 } from "recharts";
 
 export default class Example extends PureComponent<{
@@ -32,11 +33,17 @@ export default class Example extends PureComponent<{
   mergeData = (done: any, waited: any) => {
     let finalObject = [];
     for (let wait of waited) {
+      let find = 0;
       for (let d of done) {
         if (wait.name === d.name) {
           const temp = { ...wait, ...d };
           finalObject.push(temp);
+          find++;
         }
+      }
+      if(find === 0 && wait.name.trim()!== ''){
+        const temp = {...wait}
+        finalObject.push(temp)
       }
     }
     return finalObject
@@ -90,7 +97,7 @@ export default class Example extends PureComponent<{
     for (let machine of Object.values(orderByMachine)) {
       prepareData.push({
         name: machinesNames[index],
-        valueUntilDate: Object.entries(machine).length,
+        Realizados: Object.entries(machine).length,
       });
       index++;
     }
@@ -105,7 +112,7 @@ export default class Example extends PureComponent<{
             <Tooltip isAnimationActive={false} />
             <XAxis
               dataKey="name"
-              dy={100}
+              dy={110}
               dx={-10}
               interval={0}
               height={250}
@@ -113,8 +120,16 @@ export default class Example extends PureComponent<{
             />
             <Bar
               barSize={50}
-              dataKey="valueUntilDate"
+              dataKey="Realizados"
               onClick={this.handleClick}
+              label={{ position: 'top' }}
+              fill={
+                index === activeIndex
+                  ? ""
+                  : data[index]['Realizados']/ data[index].previstos >= 1
+                  ? "#259A3D"
+                  : "#D82B22"
+              }
             >
               {data.map((entry: any, index: number) => (
                 <Cell
@@ -122,24 +137,25 @@ export default class Example extends PureComponent<{
                   fill={
                     index === activeIndex
                       ? ""
-                      : data[index]['valueUntilDate'] / data[index]['total'] >= 1
+                      : entry['Realizados']/ entry.previstos >= 1
                       ? "#259A3D"
                       : "#D82B22"
                   }
-                  key={`celluv-${index}`}
+                  key={`realizados-${index}`}
                 />
               ))}
             </Bar>
-            <Bar barSize={50} dataKey="total" onClick={this.handleClick}>
+            <Bar barSize={50} dataKey="previstos" onClick={this.handleClick} label={{ position: 'top' }} fill={index === activeIndex ? "" : "#4c85f4"}>
               {data.map((entry: any, index: number) => (
                 <Cell
                   cursor="pointer"
                   fill={index === activeIndex ? "" : "#4c85f4"}
-                  key={`cellpv-${index}`}
+                  key={`previstos-${index}`}
                 />
               ))}
+            <LabelList dataKey="previstos" position="top" />
             </Bar>
-            <Bar barSize={50} dataKey="amt" onClick={this.handleClick}>
+            {/*<Bar barSize={50} dataKey="amt" onClick={this.handleClick}>
               {data.map((entry: any, index: number) => (
                 <Cell
                   cursor="pointer"
@@ -147,7 +163,7 @@ export default class Example extends PureComponent<{
                   key={`cellamt-${index}`}
                 />
               ))}
-            </Bar>
+              </Bar>*/}
           </BarChart>
         </ResponsiveContainer>
       </>
