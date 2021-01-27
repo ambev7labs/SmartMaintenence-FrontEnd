@@ -1,12 +1,10 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-import UserData from "../../contexts/UserData";
 import {
   BarChart,
   Bar,
   Cell,
   XAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
@@ -22,7 +20,7 @@ export default class Example extends PureComponent<{
     prepareData: "",
     field: this.props.field,
     prevValues: "",
-    kind:this.props.kind
+    kind: this.props.kind,
   };
 
   handleClick = (data: any, index: number) => {
@@ -31,34 +29,46 @@ export default class Example extends PureComponent<{
     });
   };
 
+  mergeData = (done: any, waited: any) => {
+    let finalObject = [];
+    for (let wait of waited) {
+      for (let d of done) {
+        if (wait.name === d.name) {
+          const temp = { ...wait, ...d };
+          finalObject.push(temp);
+        }
+      }
+    }
+    return finalObject
+  };
+
   componentDidUpdate(prevProps: any, prevState: any) {
     if (prevState !== prevProps) {
       this.setState({ prepareData: prevProps });
     }
     if (prevState === "") {
-      console.log(this.state.kind)
-      if(this.state.kind==='Checks'){
-      axios
-        .get(
-          `/checkmanip/untilDateAndMonth?field=${this.state.field}&today=${
-            new Date().toISOString().split("T")[0]
-          }`
-        )
-        .then((res) => {
-          const values = res.data;
-          this.setState({ prevValues: values });
-        });
-      }else if(this.state.kind==='Lubrificação'){
+      if (this.state.kind === "Checks") {
         axios
-        .get(
-          `/checkmanip/lubUntilDateAndMonth?field=${this.state.field}&today=${
-            new Date().toISOString().split("T")[0]
-          }`
-        )
-        .then((res) => {
-          const values = res.data;
-          this.setState({ prevValues: values });
-        });
+          .get(
+            `/checkmanip/untilDateAndMonth?field=${this.state.field}&today=${
+              new Date().toISOString().split("T")[0]
+            }`
+          )
+          .then((res) => {
+            const values = res.data;
+            this.setState({ prevValues: values });
+          });
+      } else if (this.state.kind === "Lubrificação") {
+        axios
+          .get(
+            `/checkmanip/lubUntilDateAndMonth?field=${this.state.field}&today=${
+              new Date().toISOString().split("T")[0]
+            }`
+          )
+          .then((res) => {
+            const values = res.data;
+            this.setState({ prevValues: values });
+          });
       }
     }
   }
@@ -78,15 +88,16 @@ export default class Example extends PureComponent<{
     let prepareData = [];
     let index = 0;
     for (let machine of Object.values(orderByMachine)) {
-        prepareData.push({
-          name: machinesNames[index],
-          valueUntilDate: Object.entries(machine).length,
-        });
-        index++;
+      prepareData.push({
+        name: machinesNames[index],
+        valueUntilDate: Object.entries(machine).length,
+      });
+      index++;
     }
-    prepareData.sort();
-    this.componentDidUpdate(prepareData, this.state.prepareData);
-    console.log(this.state)
+    prepareData = this.mergeData(
+      Object.values(prepareData),
+      Object.values(this.state.prevValues)
+    );
     return (
       <>
         <ResponsiveContainer width="100%" height={600}>
@@ -111,7 +122,7 @@ export default class Example extends PureComponent<{
                   fill={
                     index === activeIndex
                       ? ""
-                      : data[index].uv / data[index].pv >= 1
+                      : data[index]['valueUntilDate'] / data[index]['total'] >= 1
                       ? "#259A3D"
                       : "#D82B22"
                   }
