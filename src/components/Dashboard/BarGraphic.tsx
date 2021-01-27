@@ -21,7 +21,7 @@ interface states{
   open:boolean;
 }
 
-class BarGraphic extends PureComponent<{ data: Data[], modal: Check[] | null },states> {
+class BarGraphic extends PureComponent<{ data: Data[], modal: Check[] | null, kind:String },states> {
   constructor(props:any) {
     super(props);
     this.state = {
@@ -42,7 +42,7 @@ class BarGraphic extends PureComponent<{ data: Data[], modal: Check[] | null },s
     const openModal = this.state.open;
     return (
       <>
-        <ModalEquipaments open={openModal} close={this.handleClose} data={this.props.modal} />
+        <ModalEquipaments open={openModal} close={this.handleClose} data={this.props.modal} kind={this.props.kind} />
         <ResponsiveContainer width="100%" height="100%" aspect={1.25}>
           <BarChart  data={data} onClick={this.handleOpen}>
             <XAxis dataKey="name" />

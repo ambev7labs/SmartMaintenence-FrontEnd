@@ -20,12 +20,13 @@ const ModalEquipaments = (props: any) => {
       scroll={'paper'}
     >
       <DialogTitle id="modal-equipaments" style={{display:'flex', justifyContent:'center'}}>
-        <span style={{textAlignLast:'center'}}> Máquinas {userData.user.field}</span>
+        <span style={{textAlignLast:'center'}}> Máquinas {userData.user.field} - Checks de {props.kind==='Checks'?'Limpeza / Inspeção': 'Lubrificação'} previstos até o dia : </span>
+        <span style={{textAlignLast:'center'}}>{new Date().toLocaleDateString()}</span>
           <IconButton aria-label="close" size='medium' onClick={props.close}>
             <CloseIcon />
           </IconButton>
       </DialogTitle>
-      <EquipsGraphs data={props.data}/>
+      <EquipsGraphs data={props.data} field={userData.user.field} kind={props.kind}/>
     </Dialog>
     </Container>
   );
