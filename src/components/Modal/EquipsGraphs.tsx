@@ -117,7 +117,7 @@ export default class Example extends PureComponent<{
             <Tooltip isAnimationActive={false} />
             <XAxis
               dataKey="name"
-              dy={80}
+              dy={110}
               dx={-10}
               interval={0}
               height={250}
