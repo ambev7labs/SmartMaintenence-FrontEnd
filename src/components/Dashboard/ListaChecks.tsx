@@ -43,7 +43,7 @@ const ListaChecksRecentes = () => {
                        let hour = Number(new Date(row.date).getHours());
                        let minutes = Number(new Date(row.date).getMinutes());
                        return <TableRow key={`ultimos-5checks-lista-${index}`}>
-                            <TableCell>{new Date(row.date).toUTCString()}</TableCell>
+                            <TableCell>{new Date(row.date).toLocaleString('pt-br',{timeZone:'UTC'})}</TableCell>
                             <TableCell>{row.userId}</TableCell>
                             <TableCell>{row.field}</TableCell>
                             <TableCell>{row.kind}</TableCell>
