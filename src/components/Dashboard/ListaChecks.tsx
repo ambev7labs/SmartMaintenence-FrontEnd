@@ -40,7 +40,7 @@ const ListaChecksRecentes = () => {
                 </TableHead>
                 <TableBody>
                     {rows && rows.map((row : CheckDashboardHome, index) => {
-                       let hour = Number(new Date(row.date).getHours());
+                       let hour = Number(new Date(row.date).getUTCHours());
                        let minutes = Number(new Date(row.date).getMinutes());
                        return <TableRow key={`ultimos-5checks-lista-${index}`}>
                             <TableCell>{new Date(row.date).toLocaleString('pt-br',{timeZone:'UTC'})}</TableCell>
