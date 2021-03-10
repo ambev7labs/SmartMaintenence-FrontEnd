@@ -28,8 +28,15 @@ const ListaChecksRecentes = () => {
     axios
       .get(`checkmanip/criticidade?field=${userData.user.field}&kind=checks`)
       .then((response) => {
-        let data = response.data.sort((a:any, b:any)=>{
-         return ((b.done.realizados / b.wait.previstos) < (a.done.realizados / a.wait.previstos))
+        let data = response.data
+        data = data.sort((a:any,b:any) => {
+          if(a.done.realizados/a.wait.previstos > b.done.realizados/b.wait.previstos){
+            return 1;
+          }else if (a.done.realizados/a.wait.previstos < b.done.realizados/b.wait.previstos){
+            return -1
+          }else{
+            return 0
+          }
         })
         setRows(data);
       });
