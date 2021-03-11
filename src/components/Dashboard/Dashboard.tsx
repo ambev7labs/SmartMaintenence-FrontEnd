@@ -64,7 +64,7 @@ const Dashboard = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <GraphsByEquip data={graphData} />
+                        <GraphsByEquip data={graphData} field={userData.user.field}/>
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
