@@ -41,7 +41,7 @@ export default class Example extends PureComponent<{
           find++;
         }
       }
-      if(find === 0 && wait.name.trim()!== ''){
+      if(find === 0 && wait.name!== ''){
         const temp = {...wait}
         finalObject.push(temp)
       }
@@ -105,6 +105,7 @@ export default class Example extends PureComponent<{
       Object.values(prepareData),
       Object.values(this.state.prevValues)
     );
+    console.log(prepareData)
     return (
       <>
         <ResponsiveContainer width="100%" height={600}>
@@ -127,13 +128,7 @@ export default class Example extends PureComponent<{
               {data.map((entry: any, index: number) => (
                 <Cell
                   cursor="pointer"
-                  fill={
-                    (index === activeIndex && entry['Realizados'])
-                      ? ""
-                      : entry['Realizados']/ entry.previstos >= 1
-                      ? "#259A3D"
-                      : "#D82B22"
-                  }
+                  fill="#259A3D"
                   key={`realizados-${index}`}
                 />
               ))}
