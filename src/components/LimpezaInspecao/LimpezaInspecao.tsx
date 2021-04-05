@@ -37,12 +37,12 @@ const LimpezaInspecao = () => {
             frequency: selectedEquipamento?.frequency || -1,
             arrayAllPages: [selectedEquipamento?.procedures] as Procedimento[][],
             date: new Date(),
-            userId: userData.user.userId || '',
+            userId: userData.user.name || '',
             field: userData.user.field || '',
             machineName: selectedEquipamento?.name || '',
             report: reportComments,
+            lineWasUp: (selectedEquipamento?.lineWasUp ? true : false)
         };
-
         axios
             .post('/check/create', dados)
             .then(() => {

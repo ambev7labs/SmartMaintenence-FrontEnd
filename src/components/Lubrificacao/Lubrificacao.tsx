@@ -37,14 +37,14 @@ const Lubrificacao = () => {
             frequency: selectedLubMachine?.frequency || -1,
             arrayAllPages: [selectedLubMachine?.procedures] as LubProcedure[][],
             date: new Date(),
-            userId: userData.user.userId || '',
+            userId: userData.user.name || '',
             field: userData.user.field || '',
             machineName: selectedLubMachine?.name || '',
             report: reportComments,
+            lineWasUp: (selectedLubMachine?.lineWasUp ? true : false)
         };
-
         axios
-            .post('/check/create', dados)
+            .post('/lubrification/create', dados)
             .then(() => {
                 setIsRequestSent(true);
                 setErrorMessage(undefined);
@@ -60,7 +60,7 @@ const Lubrificacao = () => {
     return (
         <Container className={classes.container}>
             <Container className={classes.selectorContainer}>
-                <Title>Limpeza e Inspeção</Title>
+                <Title>Lubrificação</Title>
                 <GrupoLubMachineSelector
                     grupos={grupos}
                     setGrupos={setGrupos}

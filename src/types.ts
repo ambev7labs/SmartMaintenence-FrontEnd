@@ -5,7 +5,7 @@ export interface GrupoEquipamento {
 
 export interface GrupoLubMachine {
     id: number;
-    typeEquip: string;
+    title: string;
 }
 
 export interface LubMachine {
@@ -19,6 +19,9 @@ export interface LubMachine {
     frequency: number;
     period: string;
     link?: string;
+    lublink?:string;
+    layout?:string;
+    lineWasUp?: boolean
 }
 
 export interface Equipamento {
@@ -32,6 +35,7 @@ export interface Equipamento {
     frequency: number;
     period: string;
     link?: string;
+    lineWasUp?: boolean
 }
 export interface Operarios {
     _id: string;
@@ -53,6 +57,21 @@ export interface Check {
     period: string;
     link?: string;
     report?: string;
+    lineWasUp?: boolean;
+}
+
+export interface LubCheck {
+    date: string;
+    name: string;
+    procedures: LubProcedure[];
+    field: string;
+    typeEquip: string;
+    frequency: number;
+    userId: string;
+    period: string;
+    lublink?: string;
+    report?: string;
+    lineWasUp?: boolean;
 }
 
 export interface CheckDashboardHome {
@@ -64,6 +83,7 @@ export interface CheckDashboardHome {
     frequency: number;
     userId: string;
     period: string;
+    kind:string;
 }
 
 
@@ -143,6 +163,7 @@ export interface LimpezaInspecaoInfo {
     field: string;
     machineName: string;
     report: string;
+    lineWasUp: boolean;
 }
 
 export interface LubrificacaoInfo {
@@ -154,6 +175,7 @@ export interface LubrificacaoInfo {
     field: string;
     machineName: string;
     report: string;
+    lineWasUp: boolean;
 }
 
 export interface ChecksAndItensTotais {
